@@ -2,6 +2,15 @@
 
 Currently, it tests Flink and Jet.
 
+### The Tested WordCount Pipeline
+
+```aidl
+Source (read from file, 5MB)
+ -> Process: Split line into words (Here here is a bomb, every word emit 1000 times)
+ -> Group/Count
+ -> Sink (do nothing)
+```
+
 ### Run Jet
 
 - Directly run JetWordCount
@@ -28,6 +37,24 @@ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPS
 - JDK 11
 
 ##### Jet 4.4
+Pipeline:
+```
+digraph DAG {
+	"items" [localParallelism=1];
+	"fused(flat-map, filter)" [localParallelism=8];
+	"group-and-aggregate-prepare" [localParallelism=8];
+	"group-and-aggregate" [localParallelism=8];
+	"do-nothing-sink" [localParallelism=1];
+	"items" -> "fused(flat-map, filter)" [queueSize=1024];
+	"fused(flat-map, filter)" -> "group-and-aggregate-prepare" [label="partitioned", queueSize=1024];
+	subgraph cluster_0 {
+		"group-and-aggregate-prepare" -> "group-and-aggregate" [label="distributed-partitioned", queueSize=1024];
+	}
+	"group-and-aggregate" -> "do-nothing-sink" [queueSize=1024];
+}
+```
+
+Log:
 ```aidl
 Jet: finish in 36.45935081 seconds.
 ```
@@ -40,6 +67,52 @@ jobmanager.memory.process.size: 2096m
 taskmanager.memory.process.size: 12288m
 taskmanager.numberOfTaskSlots: 8
 parallelism.default: 8
+```
+
+Pipeline:
+```aidl
+{
+  "nodes" : [ {
+    "id" : 1,
+    "type" : "Source: Custom Source",
+    "pact" : "Data Source",
+    "contents" : "Source: Custom Source",
+    "parallelism" : 1
+  }, {
+    "id" : 2,
+    "type" : "Flat Map",
+    "pact" : "Operator",
+    "contents" : "Flat Map",
+    "parallelism" : 8,
+    "predecessors" : [ {
+      "id" : 1,
+      "ship_strategy" : "REBALANCE",
+      "side" : "second"
+    } ]
+  }, {
+    "id" : 4,
+    "type" : "Keyed Aggregation",
+    "pact" : "Operator",
+    "contents" : "Keyed Aggregation",
+    "parallelism" : 8,
+    "predecessors" : [ {
+      "id" : 2,
+      "ship_strategy" : "HASH",
+      "side" : "second"
+    } ]
+  }, {
+    "id" : 5,
+    "type" : "Sink: Unnamed",
+    "pact" : "Data Sink",
+    "contents" : "Sink: Unnamed",
+    "parallelism" : 8,
+    "predecessors" : [ {
+      "id" : 4,
+      "ship_strategy" : "FORWARD",
+      "side" : "second"
+    } ]
+  } ]
+}
 ```
 
 Log:
