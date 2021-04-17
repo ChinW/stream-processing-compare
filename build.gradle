@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+}
+
+ext {
+    flinkVersion = '1.12.2'
+    scalaBinaryVersion = '2.11'
+}
+
+group 'chiw.spc'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // hazelcast jet
+    implementation('com.hazelcast.jet:hazelcast-jet:4.4' )
+    implementation('com.hazelcast.jet:hazelcast-jet-core:4.4:tests')
+    implementation('com.hazelcast.jet:hazelcast-jet-protobuf:4.4')
+    // flink
+    compileOnly("org.apache.flink:flink-java:${flinkVersion}")
+    compileOnly("org.apache.flink:flink-streaming-java_${scalaBinaryVersion}:${flinkVersion}")
+    compileOnly("org.apache.flink:flink-clients_${scalaBinaryVersion}:${flinkVersion}")
+    // protobuf
+    implementation("com.twitter:chill-protobuf:0.7.6") {
+        exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
+    }
+    implementation('com.google.protobuf:protobuf-java:3.13.0')
+    // log
+    implementation("org.slf4j:slf4j-api:1.7.25")
+    implementation("org.slf4j:slf4j-log4j12:1.7.25")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "11"
+}
+
+jar {
+    manifest {
+        attributes 'Built-By': System.getProperty('user.name'),
+            'Build-Jdk': System.getProperty('java.version')
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

@@ -1,0 +1,9 @@
+hazelcast-client:
+  cluster-name: jet
+  network:
+    cluster-members:
+      - 127.0.0.1:5601
+    smart-routing: false
+  connection-strategy:
+    connection-retry:
+      cluster-connect-timeout-millis: 1000
