@@ -22,6 +22,7 @@ class FlinkWordCount {
 
     fun run() {
         val env = StreamExecutionEnvironment.getExecutionEnvironment()
+        env.config.enableObjectReuse()
         val lines = env.addSource(FlinkWordCountSource())
         val counts: DataStream<Tuple2<String, Int>> =
             lines.flatMap(Tokenizer())

@@ -118,8 +118,20 @@ Pipeline:
 Log:
 ```aidl
 ❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
-Job has been submitted with JobID 8ee33e2a1b8c633ed8fb354434bbc22f
+Job has been submitted with JobID 163ce849a663e45f3c3028a98f260e7c
 Program execution finished
-Job with JobID 8ee33e2a1b8c633ed8fb354434bbc22f has finished.
-Job Runtime: 87861 ms
+Job with JobID 163ce849a663e45f3c3028a98f260e7c has finished.
+Job Runtime: 88614 ms
+
+❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
+Job has been submitted with JobID fcf12488204969299e4e5d7f23f4ea6e
+Program execution finished
+Job with JobID fcf12488204969299e4e5d7f23f4ea6e has finished.
+Job Runtime: 90165 ms
+
+❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
+Job has been submitted with JobID 37e349e4fad90cd7405546d30239afa4
+Program execution finished
+Job with JobID 37e349e4fad90cd7405546d30239afa4 has finished.
+Job Runtime: 78908 ms
 ```
