@@ -56,7 +56,17 @@ digraph DAG {
 
 Log:
 ```aidl
+Start time: 2021-04-18T13:52:52.106
+Duration: 00:00:36.459
 Jet: finish in 36.45935081 seconds.
+
+Start time: 2021-04-19T16:51:53.806
+Duration: 00:00:30.143
+Jet: finish in 30.625740453 seconds.
+
+Start time: 2021-04-19T16:52:48.906
+Duration: 00:00:37.207
+Jet: finish in 37.862554137 seconds.
 ```
 ##### Flink 1.12.2 for Scala 2.11
 `flink-config.yaml` Configuration:
