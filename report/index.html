@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stream Processing Frameworks: Flink, Jet</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      img {
+          width: 100%;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      li {
+        line-height: 1.5;
+      }
+      table {
+        border-spacing: 0;
+      }
+      th, td {
+        border: 1px solid;
+        padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Stream Processing Frameworks
+## Compare between Flink and Jet
+
+---
+
+## Stream Processing
+
+- the practice of taking action on a series of data at the time the data is created
+- real time processing
+- computing on data directly as it is produced or received
+
+![stream infra](./stream_processing.jpeg)
+
+---
+
+## Terminology
+
+- Batch (Bounded) & Stream (Unbounded)
+  - Flink only has `Stream`, it treated `Batch` as `Bounded Stream`
+
+![bounded-unbounded](./bounded-unbounded.png)
+
+- Data Pipeline: A **D**irected **A**cyclic **G**raph
+  - **E**xtract: Source 
+  - **T**ransform: Process Function
+      - Stateless
+      - With State
+          - Exactly Once/At Least Once Garantee?
+  - **L**oad: Sink
+
+---
+
+## Frameworks
+
+- First Generation -- **Storm**
+  - Event Level Processing / Millisecond Delay Level
+  - At Least Once
+  - No SQL, No state, Low Throughput
+- Second -- **Spark Streaming**
+  - Mini-batch level processing / Second Delay Level
+  - SQL / state / stream+batch
+  - End to End Exactly Once
+  - No advanced process functions (aggs, time window, etc)
+- Third -- **Flink**, **Jet**
+  - Event level processing / Millisecond Delay Level
+  - SQL / state / stream + batch
+  - End to End Exactly Once
+
+What about **Kafka**: Kafka is known as ditributed messaging queue, but there is Kafka Streams for stream processing
+
+---
+
+## Test Pipeline for Flink, Jet
+
+##### Work Count Pipeline - the "Hello World" in stream processing
+
+```aidl
+- [Source] Read a book from local memory (5MB)
+-> [Process] Split line into words
+-> [Process] Group / Count each words show up times
+-> [Sink] Logger (do nothing)
+```
+
+##### Work Count Pipeline v2 - with Bomb
+
+```aidl
+- [Source] Read a book from local memory (5MB)
+-> [Process] Split line into words, **each word emits out 1000 times**
+-> [Process] Group / Count each words show up times
+-> [Sink] Logger (do nothing)
+```
+
+##### Order Bomb Pipeline
+
+```aidl
+[Source] Read data from remote DB, 10k orders
+-> [Process] For each order, emit Pair[Client, Order] 1000 times
+-> [Process] Each Pair[Client, Order], enter process function (do nothing), emit [Order]
+-> [Sink] Save data to remote DB
+```
+
+
+---
+## Result
+
+| Jet | WordCount | WordCount v2 (Bomb) | Order Bomb |
+|---|---|---|---|
+| 1st | 0.854 | 36.459 | 8.995 | 
+| 2nd | 1.179 | 30.143 | 7.715 |
+| 3rd | 0.960 | 37.207 | 7.398 |
+
+<hr/>
+
+| Flink | WordCount | WordCount v2 (Bomb) | Order Bomb |
+|---|---|---|---|
+| 1st | 1.298 | 88.614 | 69.298 | 
+| 2nd | 0.891 | 90.165 | 65.488 |
+| 3rd | 1.099 | 78.908 | 55.021 |
+
+
+---
+## Created DAG for WordCount
+
+##### Jet 4.4
+Pipeline:
+```aidl
+digraph DAG {
+	"items" [localParallelism=1];
+	"fused(flat-map, filter)" [localParallelism=8];
+	"group-and-aggregate-prepare" [localParallelism=8];
+	"group-and-aggregate" [localParallelism=8];
+	"do-nothing-sink" [localParallelism=1];
+	"items" -> "fused(flat-map, filter)" [queueSize=1024];
+	"fused(flat-map, filter)" -> "group-and-aggregate-prepare"...
+  ...[label="partitioned", queueSize=1024];
+	subgraph cluster_0 {
+		"group-and-aggregate-prepare" -> "group-and-aggregate"...
+    ...[label="distributed-partitioned", queueSize=1024];
+	}
+	"group-and-aggregate" -> "do-nothing-sink" [queueSize=1024];
+}
+```
+
+
+---
+## Created DAG for WordCount
+
+Pipeline:
+```aidl
+{
+  "nodes" : [ {
+    "id" : 1,
+    "type" : "Source: Custom Source",
+    "pact" : "Data Source",
+    "contents" : "Source: Custom Source",
+    "parallelism" : 1
+  }, {
+    "id" : 2,
+    "type" : "Flat Map",
+    "pact" : "Operator",
+    "contents" : "Flat Map",
+    "parallelism" : 8,
+    "predecessors" : [ {
+      "id" : 1,
+      "ship_strategy" : "REBALANCE",
+      "side" : "second"
+    } ]
+  }, {
+    "id" : 4,
+    "type" : "Keyed Aggregation",
+    "pact" : "Operator",
+    "contents" : "Keyed Aggregation",
+    "parallelism" : 8,
+    "predecessors" : [ {
+      "id" : 2,
+      "ship_strategy" : "HASH",
+      "side" : "second"
+    } ]
+  }, {
+    "id" : 5,
+    "type" : "Sink: Unnamed",
+    "pact" : "Data Sink",
+    "contents" : "Sink: Unnamed",
+    "parallelism" : 8,
+    "predecessors" : [ {
+      "id" : 4,
+      "ship_strategy" : "FORWARD",
+      "side" : "second"
+    } ]
+  } ]
+}
+```
+
+---
+
+### Protobuf
+
+Measures "create N items + put N items"
+
+| Volume | Portable | Protofbuf | Protobuf / Portable * 100%|
+|---|---|---|---|
+|1k|1.23s | 0.082s| 6.65% |  
+|10k|1.48s | 0.297s| 20.03% |  
+|100k|2.568s | 1.107s| 43.09% |  
+|1mn|12.394s | 8.9.16s| 71.93% |  
+
+---
+
+## What makes diff? -- Commnucation Cost
+
+- CPU/Memory
+  - (16cores \* 1 host) \> (4cores \* 4 hosts)
+- Network
+  - Serialization/Deserialization
+      - Recommend: Protobuf
+  - Cluster Nodes Physical Distribution
+      - 8 HK nodes  \> (4 SG nodes + 4 HK nodes)
+- Stateless Process Function
+  - Cut down outer dependencies!
+---
+
+## Appendix
+- RESTful API Architecture 
+![](./rest.jpeg)
+- Flink Reference
+  - https://flink.apache.org/ 
+  - [Architecture](https://flink.apache.org/flink-architecture.html)
+  - [Install Link](https://ci.apache.org/projects/flink/flink-docs-release-1.12/try-flink/local_installation.html)
+  - [ETL](https://ci.apache.org/projects/flink/flink-docs-stable/zh/learn-flink/etl.html)
+- Hazelcast
+  - https://jet-start.sh/
+- [Big_Stream_Processing_Systems_An_Experimental_Evaluation](https://www.researchgate.net/publication/334158029_Big_Stream_Processing_Systems_An_Experimental_Evaluation)
+
+    </textarea>
+    <script src="./remark.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
