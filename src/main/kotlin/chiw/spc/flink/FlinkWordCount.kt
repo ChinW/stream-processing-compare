@@ -20,12 +20,12 @@ import java.util.logging.Logger
 class FlinkWordCount {
     val log = LoggerFactory.getLogger(FlinkWordCount::class.java)
 
-    fun run() {
+    fun run(bomb: Int) {
         val env = StreamExecutionEnvironment.getExecutionEnvironment()
         env.config.enableObjectReuse()
         val lines = env.addSource(FlinkWordCountSource())
         val counts: DataStream<Tuple2<String, Int>> =
-            lines.flatMap(Tokenizer())
+            lines.flatMap(Tokenizer(bomb))
                 .keyBy { it.f0 }
                 .sum(1)
         counts.addSink(FlinkWordCountSink())
@@ -33,10 +33,10 @@ class FlinkWordCount {
         env.execute("word-count")
     }
 
-    class Tokenizer() : FlatMapFunction<String, Tuple2<String, Int>> {
+    class Tokenizer(val bomb: Int) : FlatMapFunction<String, Tuple2<String, Int>> {
         override fun flatMap(value: String, out: Collector<Tuple2<String, Int>>) {
             val tokens = value.toLowerCase().split("\\W+".toRegex()).toTypedArray()
-            repeat(1000) { // bomb
+            repeat(bomb) { // bomb
                 for (token in tokens) {
                     if (token.length > 0) {
                         out.collect(Tuple2<String, Int>(token, 1))
@@ -68,5 +68,5 @@ class FlinkWordCount {
 
 fun main(){
     val flinkWordCount = FlinkWordCount()
-    flinkWordCount.run()
+    flinkWordCount.run(1000)
 }

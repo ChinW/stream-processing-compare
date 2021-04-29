@@ -13,8 +13,11 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      img {
+      .w-100 {
           width: 100%;
+      }
+      .h-100 {
+        height: 100%;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
       li {
@@ -22,10 +25,40 @@
       }
       table {
         border-spacing: 0;
+        font-size: 10px;
       }
       th, td {
         border: 1px solid;
         padding: 2px 10px;
+      }
+      code {
+        max-height: 35vh;
+      }
+      .flow {
+        display: flex;
+        flex-direction: column;
+        background-color: aliceblue;
+        font-size: 12px;
+        padding: 5px;
+      }
+      .flow-diagram {
+        display: flex;
+        align-items: center;
+      }
+      .flow-diagram > div {
+        display: flex;
+        flex-direction: column;
+        background-color: antiquewhite;
+        border: 1px solid;
+        padding: 5px 10px;
+      }
+      .flow-diagram span.arrow {
+        font-size: 16px;;
+        margin: 0 10px;
+      }
+      .flow h5 {
+        margin: 5px 0;
+        font-size: 14px;
       }
     </style>
   </head>
@@ -45,7 +78,7 @@ class: center, middle
 - real time processing
 - computing on data directly as it is produced or received
 
-![stream infra](./stream_processing.jpeg)
+<img src="./stream_processing.jpeg" alt="" class="w-100">
 
 ---
 
@@ -54,7 +87,7 @@ class: center, middle
 - Batch (Bounded) & Stream (Unbounded)
   - Flink only has `Stream`, it treated `Batch` as `Bounded Stream`
 
-![bounded-unbounded](./bounded-unbounded.png)
+<img src="./bounded-unbounded.png" alt="" class="w-100">
 
 - Data Pipeline: A **D**irected **A**cyclic **G**raph
   - **E**xtract: Source 
@@ -97,7 +130,7 @@ What about **Kafka**: Kafka is known as ditributed messaging queue, but there is
 -> [Sink] Logger (do nothing)
 ```
 
-##### Work Count Pipeline v2 - with Bomb
+##### Work Count Pipeline - with Bomb
 
 ```aidl
 - [Source] Read a book from local memory (5MB)
@@ -115,31 +148,30 @@ What about **Kafka**: Kafka is known as ditributed messaging queue, but there is
 -> [Sink] Save data to remote DB
 ```
 
-
 ---
 ## Result
 
-| Jet | WordCount | WordCount v2 (Bomb) | Order Bomb |
-|---|---|---|---|
-| 1st | 0.854 | 36.459 | 8.995 | 
-| 2nd | 1.179 | 30.143 | 7.715 |
-| 3rd | 0.960 | 37.207 | 7.398 |
+| Jet | WordCount | WordCount w/ Bomb | Order Bomb<br/> (10k, Jet Portable) |Order Stream<br/>(10k, **Protobuf**) | Order Bomb<br/>(100k, Jet Portable) |  Order Stream<br/>(No bomb, 1mn, Jet Portable) |
+|---|---|---|---|---|---|---|
+| 1st | 0.854 | 36.459 | 26.717 | 8.995 | 270.282 | 11.851 |
+| 2nd | 1.179 | 30.143 | 31.187 | 7.715 | - | 11.708 |
+| 3rd | 0.960 | 37.207 | 30.114 | 7.398 | - | 11.398 |
 
 <hr/>
 
-| Flink | WordCount | WordCount v2 (Bomb) | Order Bomb |
-|---|---|---|---|
-| 1st | 1.298 | 88.614 | 69.298 | 
-| 2nd | 0.891 | 90.165 | 65.488 |
-| 3rd | 1.099 | 78.908 | 55.021 |
-
+| Flink | WordCount | WordCount w/ Bomb | Order Bomb<br/> (10k, Flink TypeInfo) |Order Stream<br/>(10k, **Protobuf**) | Order Bomb<br/>(100k, Flink TypeInfo) | Order Stream<br/>(No bomb, 1mn, Flink TypeInfo) |
+|---|---|---|---|---|---|---|
+| 1st | 1.298 | 88.614 | 47.755 | 51.298 | 872.765 | 70.270 |
+| 2nd | 0.891 | 90.165 | 55.453 | 65.488 | - | 74.971 |
+| 3rd | 1.099 | 78.908 | 61.095 | 55.021 |- | 69.196 |
 
 ---
 ## Created DAG for WordCount
 
-##### Jet 4.4
-Pipeline:
+##### Jet 4.4 Pipeline: 
+
 ```aidl
+# http://viz-js.com/
 digraph DAG {
 	"items" [localParallelism=1];
 	"fused(flat-map, filter)" [localParallelism=8];
@@ -157,11 +189,17 @@ digraph DAG {
 }
 ```
 
+---
+## Created DAG for WordCount
+
+##### Jet 4.4 Pipeline: 
+
+<img src="./jet-wordcount-pipeline.png" alt="" style="height: 450px;">
 
 ---
 ## Created DAG for WordCount
 
-Pipeline:
+##### Flink 1.12.2 Pipeline:
 ```aidl
 {
   "nodes" : [ {
@@ -208,10 +246,16 @@ Pipeline:
 ```
 
 ---
+## Created DAG for WordCount
 
-### Protobuf
+##### Flink 1.12.2 Pipeline:
 
-Measures "create N items + put N items"
+<img src="./flink protobuf 10k.png" class="w-100">
+---
+
+### Serialization Matters -- Protobuf
+
+Measures "create N items + put N items to Hazelcast Cache (Local, 1 node)"
 
 | Volume | Portable | Protofbuf | Protobuf / Portable * 100%|
 |---|---|---|---|
@@ -233,11 +277,138 @@ Measures "create N items + put N items"
       - 8 HK nodes  \> (4 SG nodes + 4 HK nodes)
 - Stateless Process Function
   - Cut down outer dependencies!
+
+---
+
+## Flink / Jet Spec
+
+<table cellspacing=0 >
+  <tr>
+    <td style=min-width:50px></td>
+    <td style=min-width:50px>Flink</td>
+    <td style=min-width:50px>Hazelcast Jet</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Year</td>
+    <td style=min-width:50px>2015</td>
+    <td style=min-width:50px>2018</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Organization </td>
+    <td style=min-width:50px>Apache</td>
+    <td style=min-width:50px>Hazelcast</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Licence</td>
+    <td style=min-width:50px>Apache License 2.0</td>
+    <td style=min-width:50px>Apache License 2.0 <br/>
+Hazelcast Community License</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Processing Model</td>
+    <td style=min-width:50px>Stream</td>
+    <td style=min-width:50px>Batch, Stream</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Programming Model</td>
+    <td style=min-width:50px colspan="2">DataFlow (Fundanmentally same)</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Resource Management</td>
+    <td style=min-width:50px colspan="2">Standalone, YARN, Mesos, Docker</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Implementation Language</td>
+    <td style=min-width:50px>Scala (JVM)</td>
+    <td style=min-width:50px>Java</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Programming Language</td>
+    <td style=min-width:50px colspan="2">JVM-based language(Java, Kotlin, Scala), Python, SQL</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>SQL Interface</td>
+    <td style=min-width:50px>Yes</td>
+    <td style=min-width:50px>Yes</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>StackOverflow Questions</td>
+    <td style=min-width:50px>9015</td>
+    <td style=min-width:50px>6629</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Data Source/Sink</td>
+    <td style=min-width:50px colspan="2">Files, Message System (Kafka, Pulsar, etc), JDBC, CDC, ES… +Customizable </td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Management GUI</td>
+    <td style=min-width:50px>Yes</td>
+    <td style=min-width:50px>No</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Task Execution Model</td>
+    <td style=min-width:50px>Multithreading with taskslot concept</td>
+    <td style=min-width:50px>Copperative multithreading with Conroutine concept</td>
+  </tr>
+  <tr>
+    <td style=min-width:50px>Resources</td>
+    <td style=min-width:50px>Dedicated Memory/Shared CPU</td>
+    <td style=min-width:50px>Shared memory, CPU</td>
+  </tr>
+</table>
+
+---
+## Points of Choose 
+
+##### 1. Cares latency/thoughput very much
+###-> Jet
+
+##### 2. Multi tenants shares one big stream processing cluster
+###-> Flink
+
+<hr>
+
+<div class="flow">
+  <h5>Kubernetes</h5>
+  <div class="flow-diagram">
+  <div>
+    <h5>Databases</h5>
+    <span>- MySQL</span>
+    <span>- Elastic Search</span>
+    <span>- IMDB</span>
+  </div>
+  <span  class="arrow">→</span>
+  <div>
+    <h5>Message Queue</h5>
+    <span>- Kafka</span>
+    <span>- Pulsar</span>
+    <span>- RabbitMQ</span>
+  </div>
+  <span  class="arrow">→</span>
+  <div>
+    <h5>Stream Processing</h5>
+    <span>- Flink</span>
+    <span>- Jet</span>
+    <span>- Kalfa Streams</span>
+  </div>
+  <span  class="arrow">→</span>
+  <div>
+    <h5>Other Databases..</h5>
+  </div>
+  <span class="arrow">→</span>
+  <div>
+    <h5>Data Streaming</h5>
+    <span>- Netty</span>
+    <span>- npm/ws</span>
+  </div>
+  </div>
+</div>
+
 ---
 
 ## Appendix
 - RESTful API Architecture 
-![](./rest.jpeg)
+<img src="./rest.jpeg" alt="" class="w-100">
 - Flink Reference
   - https://flink.apache.org/ 
   - [Architecture](https://flink.apache.org/flink-architecture.html)

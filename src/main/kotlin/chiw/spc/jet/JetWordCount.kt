@@ -23,14 +23,14 @@ class JetWordCount {
     }.receiveFn { unit, item: Map.Entry<String, Long> ->
     }.build()
 
-    fun buildPipeline(): Pipeline {
+    fun buildPipeline(bomb: Int): Pipeline {
         val delimiter: Pattern = Pattern.compile("\\W+")
         val p: Pipeline = Pipeline.create()
         p.readFrom(TestSources.items(MiscUtils.getBookLines()))
             .flatMap { entry ->
                 val output = arrayListOf<String>()
                 val words = delimiter.split(entry.toLowerCase() )
-                repeat(1000) { // bomb
+                repeat(bomb) { // bomb
                     output.addAll(words)
                 }
                 traverseArray( output.toTypedArray() )
@@ -42,9 +42,9 @@ class JetWordCount {
         return p
     }
 
-     fun go() {
+     fun go(bomb: Int) {
         try {
-            val p: Pipeline = buildPipeline()
+            val p: Pipeline = buildPipeline(bomb)
             val timeCost = measureNanoTime {
                 jet.newJob(p).join()
             }
@@ -64,5 +64,5 @@ class JetWordCount {
 }
 
 fun main(args: Array<String>) {
-    JetWordCount().go()
+    JetWordCount().go(1)
 }

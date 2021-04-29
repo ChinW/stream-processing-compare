@@ -22,9 +22,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     // hazelcast jet
-    implementation('com.hazelcast.jet:hazelcast-jet:4.4' )
-    implementation('com.hazelcast.jet:hazelcast-jet-core:4.4:tests')
-    implementation('com.hazelcast.jet:hazelcast-jet-protobuf:4.4')
+    implementation('com.hazelcast.jet:hazelcast-jet:4.5' )
+    implementation('com.hazelcast.jet:hazelcast-jet-core:4.5:tests')
+    implementation('com.hazelcast.jet:hazelcast-jet-protobuf:4.5')
     // flink
     compileOnly("org.apache.flink:flink-java:${flinkVersion}")
     compileOnly("org.apache.flink:flink-streaming-java_${scalaBinaryVersion}:${flinkVersion}")
