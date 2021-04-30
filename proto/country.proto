@@ -1,0 +1,12 @@
+syntax = "proto3";
+package chi.base.proto;
+option java_multiple_files = true;
+option java_package = "chiw.spc.proto";
+option java_outer_classname = "CountryPB";
+
+enum CountryMsg {
+  None = 0;
+  JP = 1;
+  SG = 2;
+  US = 3;
+}

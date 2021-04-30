@@ -6,4 +6,5 @@ import chiw.spc.utils.MiscUtils
 fun main(){
     ClusterUtils.setupCache()
     MiscUtils.fillPortableOrders(10_000)
+    MiscUtils.fillOrderMsg(10_000)
 }

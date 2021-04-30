@@ -1,0 +1,19 @@
+syntax = "proto3";
+package chi.base.proto;
+option java_multiple_files = true;
+option java_package = "chiw.spc.proto";
+option java_outer_classname = "OrderPB";
+
+import "country.proto";
+import "commodity.proto";
+
+message OrderMsg {
+  optional string id = 1;
+  optional int32 quantity = 2;
+  optional float price = 3;
+  optional CommodityMsg commodity = 4;
+  optional CountryMsg country = 5;
+  optional string userId = 6;
+  optional int64 createdAt = 7;
+  optional int32 timeCost = 8;
+}

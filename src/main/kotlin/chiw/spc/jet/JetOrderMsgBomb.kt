@@ -1,5 +1,7 @@
 package chiw.spc.jet
 
+import chiw.spc.proto.CommodityMsg
+import chiw.spc.proto.OrderMsg
 import chiw.spc.types.CommodityPortable
 import chiw.spc.types.DataMap
 import chiw.spc.types.OrderPortable
@@ -15,31 +17,27 @@ import com.hazelcast.jet.pipeline.Sinks
 import com.hazelcast.jet.pipeline.Sources
 import kotlin.system.measureNanoTime
 
-class JetOrderPortableBomb {
+class JetOrderMsgBomb {
     var jet: JetInstance = ClusterUtils.getJetClient()
-    val doNothingSink = SinkBuilder.sinkBuilder(
-        "do-nothing-sink"
-    ) { it -> Unit }.receiveFn { unit, item: OrderPortable -> }.build()
 
     fun buildPipeline(bomb: Int): Pipeline {
         val p: Pipeline = Pipeline.create()
-        p.readFrom(Sources.remoteMap<String, OrderPortable>(
-            DataMap.PortableOrder.mapName,
+        p.readFrom(Sources.remoteMap<String, OrderMsg>(
+            DataMap.OrderMsg.mapName,
             ClusterUtils.getCacheClientConfig()
         ))
             .flatMap { (key, order) ->
-                val bomb = MutableList<Tuple2<CommodityPortable, OrderPortable>>(bomb) {
+                val bomb = MutableList<Tuple2<CommodityMsg, OrderMsg>>(bomb) {
                     Tuple2.tuple2(order.commodity, order)
                 }
                 Traversers.traverseIterable(bomb)
             }
             .map { (commodity, order) -> order }
             .writeTo( Sinks.remoteMap(
-                DataMap.PortableOrderSink.mapName,
+                DataMap.OrderMsgSink.mapName,
                 ClusterUtils.getCacheClientConfig(),
                 {it.id}
             ) { it })
-            .setLocalParallelism(8) // as default the sink parallelism is 1
         return p
     }
 
@@ -58,5 +56,5 @@ class JetOrderPortableBomb {
 
 fun main(args: Array<String>) {
     ClusterUtils.setupJet()
-    JetOrderPortableBomb().go(1000) // 10 mn times
+    JetOrderMsgBomb().go(1000) // 10 mn times
 }

@@ -12,3 +12,8 @@ hazelcast-client:
     portable-factories:
       - factory-id: 1
         class-name: chiw.spc.types.PortableTypeFactory
+    serializers:
+      - type-class: chiw.spc.proto.OrderMsg
+        class-name: chiw.spc.proto.OrderSerializer
+      - type-class: chiw.spc.proto.CommodityMsg
+        class-name: chiw.spc.proto.CommoditySerializer

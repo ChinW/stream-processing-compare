@@ -2,8 +2,9 @@
 
 Currently, it tests Flink and Jet.
 
-### The Tested WordCount Pipeline
+### The Tested Pipeline
 
+#### WordCount Bomb
 ```aidl
 Source (read from file, 5MB)
  -> Process: Split line into words (Here here is a bomb, every word emit 1000 times)
@@ -11,9 +12,30 @@ Source (read from file, 5MB)
  -> Sink (do nothing)
 ```
 
+#### Order Bomb
+
+This pipeline measures 2 serializations:
+- Hazelcast Portable vs Flink TypeInformation 
+- Protobuf
+
+```aidl
+Source (remote DB, 10k items)
+ -> Process 1: each item emit 1000 times, emit payload Tuple2<Other Item, Item>
+ -> Process 2: do nothing, transfer the second item of payload
+ -> Sink (remote DB)
+```
+
+### Build Proto
+
+```
+ protoc -I=./proto --java_out=./src/main/java ./proto/*  
+ ```
+
 ### Run Jet
 
-- Directly run JetWordCount
+- JetWordCount.kt
+- JetOrderPortableBomb.kt
+- JetOrderMsgBomb.kt
 
 ### Run Flink
 - Download flink
@@ -27,6 +49,7 @@ Source (read from file, 5MB)
 ```bash
 flink run -c chiw.spc.flink.FlinkWordCountKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
 flink run -c chiw.spc.flink.FlinkOrderPortableBombKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
+flink run -c chiw.spc.flink.FlinkOrderMsgBombKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
 ```
 
 ### Reference
@@ -38,7 +61,7 @@ flink run -c chiw.spc.flink.FlinkOrderPortableBombKt ./build/libs/stream-process
 - JDK 11
 
 ##### Jet 4.4
-Pipeline:
+WordCount Pipeline:
 ```
 digraph DAG {
 	"items" [localParallelism=1];
@@ -80,7 +103,7 @@ taskmanager.numberOfTaskSlots: 8
 parallelism.default: 8
 ```
 
-Pipeline:
+WordCount Pipeline:
 ```aidl
 {
   "nodes" : [ {
@@ -129,20 +152,22 @@ Pipeline:
 Log:
 ```aidl
 ❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
-Job has been submitted with JobID 163ce849a663e45f3c3028a98f260e7c
-Program execution finished
 Job with JobID 163ce849a663e45f3c3028a98f260e7c has finished.
 Job Runtime: 88614 ms
 
 ❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
-Job has been submitted with JobID fcf12488204969299e4e5d7f23f4ea6e
-Program execution finished
 Job with JobID fcf12488204969299e4e5d7f23f4ea6e has finished.
 Job Runtime: 90165 ms
 
 ❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
-Job has been submitted with JobID 37e349e4fad90cd7405546d30239afa4
-Program execution finished
 Job with JobID 37e349e4fad90cd7405546d30239afa4 has finished.
 Job Runtime: 78908 ms
+
+❯ flink run -c chiw.spc.flink.FlinkOrderMsgBombKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
+Job with JobID 8f9af15e547bdb9a70101f1e348fd102 has finished.
+Job Runtime: 44215 ms
+
+❯ flink run -c chiw.spc.flink.FlinkOrderMsgBombKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
+Job with JobID 0d335ed2e49ca8c0be93b1e837f37546 has finished.
+Job Runtime: 50924 ms
 ```
