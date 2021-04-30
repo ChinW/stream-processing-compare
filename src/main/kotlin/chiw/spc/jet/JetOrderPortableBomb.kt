@@ -63,8 +63,6 @@ class JetOrderPortableBomb {
 }
 
 fun main(args: Array<String>) {
-    ClusterUtils.setupCache()
     ClusterUtils.setupJet()
-    MiscUtils.fillPortableOrders(10_000)
     JetOrderPortableBomb().go(1000) // 10 mn times
 }

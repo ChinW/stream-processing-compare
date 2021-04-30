@@ -25,7 +25,8 @@ Source (read from file, 5MB)
 - Build the library via gradle
 - Submit job via either flink web page or below command:
 ```bash
-flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
+flink run -c chiw.spc.flink.FlinkWordCountKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
+flink run -c chiw.spc.flink.FlinkOrderPortableBombKt ./build/libs/stream-processing-compare-1.0-SNAPSHOT.jar
 ```
 
 ### Reference

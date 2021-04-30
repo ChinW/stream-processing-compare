@@ -8,13 +8,15 @@ import java.lang.reflect.Type
 import kotlin.system.exitProcess
 
 object FlinkDataType {
+    val orderTypeInfo = generateTypeInfo(OrderPortable::class.java)
+
     class OrderTypeInfo: TypeInfoFactory<OrderPortable>() {
         override fun createTypeInfo(
             t: Type?,
             genericParameters: MutableMap<String, TypeInformation<*>>?
         ): TypeInformation<OrderPortable> {
             println("type is ${OrderPortable::class.java.typeName}")
-            return generateTypeInfo(OrderPortable::class.java)
+            return orderTypeInfo
         }
     }
 
