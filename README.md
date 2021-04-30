@@ -80,6 +80,7 @@ digraph DAG {
 
 Log:
 ```aidl
+## WordCount
 Start time: 2021-04-18T13:52:52.106
 Duration: 00:00:36.459
 Jet: finish in 36.45935081 seconds.
@@ -91,6 +92,16 @@ Jet: finish in 30.625740453 seconds.
 Start time: 2021-04-19T16:52:48.906
 Duration: 00:00:37.207
 Jet: finish in 37.862554137 seconds.
+
+## OrderPortable Bomb
+Start time: 2021-04-30T16:11:49.324
+Duration: 00:00:21.869
+Jet: finish in 22.105343252 seconds.
+
+## OrderMsg Bomb
+Start time: 2021-04-30T16:10:23.867
+Duration: 00:00:08.634
+Jet: finish in 8.805681357 seconds.
 ```
 ##### Flink 1.12.2 for Scala 2.11
 `flink-config.yaml` Configuration:
