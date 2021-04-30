@@ -1,8 +1,8 @@
 hazelcast-client:
-  cluster-name: jet
+  cluster-name: cache
   network:
     cluster-members:
-      - 127.0.0.1:5601
+      - 127.0.0.1:5501
     smart-routing: false
   connection-strategy:
     connection-retry:

@@ -30,3 +30,13 @@ hazelcast:
     jmx:
       enabled: true
     collection-frequency-seconds: 5
+  serialization:
+    portable-version: 0
+    portable-factories:
+      - factory-id: 1
+        class-name: chiw.spc.types.PortableTypeFactory
+#    serializers:
+#      - type-class: chiw.spc.proto.OrderMsg
+#        class-name: chiw.spc.proto.OrderSerializer
+#      - type-class: chiw.spc.proto.ClientMsg
+#        class-name: chiw.spc.proto.ClientSerializer
