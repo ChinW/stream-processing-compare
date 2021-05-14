@@ -255,7 +255,7 @@ digraph DAG {
 
 ### Serialization Matters -- Protobuf
 
-Measures "create N items + put N items to Hazelcast Cache (Local, 1 node)"
+Measures "create N items + put N items to Local Hazelcast Cache (1 node)"
 
 | Volume | Portable | Protofbuf | Protobuf / Portable * 100%|
 |---|---|---|---|
@@ -266,7 +266,7 @@ Measures "create N items + put N items to Hazelcast Cache (Local, 1 node)"
 
 ---
 
-## What makes diff? -- Commnucation Cost
+## Try Lower Communication Cost
 
 - CPU/Memory
   - (16cores \* 1 host) \> (4cores \* 4 hosts)
@@ -360,12 +360,9 @@ Hazelcast Community License</td>
 ---
 ## Points of Choose 
 
-##### 0. Split storage and computation
-##### 1. Cares latency/thoughput very much
-###-> Jet
-
-##### 2. Multi tenants shares one big stream processing cluster
-###-> Flink
+### 0. Split storage and computation
+### 1. Cares latency/thoughput very much -> Jet
+### 2. Multi tenants shares one big stream processing cluster -> Flink
 
 <hr>
 
@@ -385,7 +382,7 @@ Hazelcast Community License</td>
     <span>- Pulsar</span>
     <span>- RabbitMQ</span>
   </div>
-  <span  class="arrow">→</span>
+  <span class="arrow">→</span>
   <div>
     <h5>Stream Processing</h5>
     <span>- Flink</span>
@@ -394,13 +391,13 @@ Hazelcast Community License</td>
   </div>
   <span  class="arrow">→</span>
   <div>
-    <h5>Other Databases...</h5>
+    <h5>Databases<br/>...</h5>
   </div>
   <span class="arrow">→</span>
   <div>
     <h5>Data Streaming</h5>
+    <span>- Node/ws</span>
     <span>- Netty</span>
-    <span>- npm/ws</span>
   </div>
   </div>
 </div>
