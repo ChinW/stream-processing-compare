@@ -41,6 +41,6 @@ hazelcast:
       - type-class: chiw.spc.proto.CommodityMsg
         class-name: chiw.spc.proto.CommoditySerializer
   map:
-    "*Order*":
+    "Order*":
       event-journal:
         enabled: true

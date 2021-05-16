@@ -4,8 +4,14 @@
 package chiw.spc.proto;
 
 public interface OrderMsgOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:chi.base.proto.OrderMsg)
+    // @@protoc_insertion_point(interface_extends:CacheType.OrderMsg)
     com.google.protobuf.MessageOrBuilder {
+
+  /**
+   * <code>int32 hzCustomId = 9;</code>
+   * @return The hzCustomId.
+   */
+  int getHzCustomId();
 
   /**
    * <code>string id = 1;</code>
@@ -47,32 +53,32 @@ public interface OrderMsgOrBuilder extends
   float getPrice();
 
   /**
-   * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+   * <code>.CacheType.CommodityMsg commodity = 4;</code>
    * @return Whether the commodity field is set.
    */
   boolean hasCommodity();
   /**
-   * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+   * <code>.CacheType.CommodityMsg commodity = 4;</code>
    * @return The commodity.
    */
   chiw.spc.proto.CommodityMsg getCommodity();
   /**
-   * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+   * <code>.CacheType.CommodityMsg commodity = 4;</code>
    */
   chiw.spc.proto.CommodityMsgOrBuilder getCommodityOrBuilder();
 
   /**
-   * <code>.chi.base.proto.CountryMsg country = 5;</code>
+   * <code>.CacheType.CountryMsg country = 5;</code>
    * @return Whether the country field is set.
    */
   boolean hasCountry();
   /**
-   * <code>.chi.base.proto.CountryMsg country = 5;</code>
+   * <code>.CacheType.CountryMsg country = 5;</code>
    * @return The enum numeric value on the wire for country.
    */
   int getCountryValue();
   /**
-   * <code>.chi.base.proto.CountryMsg country = 5;</code>
+   * <code>.CacheType.CountryMsg country = 5;</code>
    * @return The country.
    */
   chiw.spc.proto.CountryMsg getCountry();
@@ -115,4 +121,15 @@ public interface OrderMsgOrBuilder extends
    * @return The timeCost.
    */
   int getTimeCost();
+
+  /**
+   * <code>bool isValid = 10;</code>
+   * @return Whether the isValid field is set.
+   */
+  boolean hasIsValid();
+  /**
+   * <code>bool isValid = 10;</code>
+   * @return The isValid.
+   */
+  boolean getIsValid();
 }

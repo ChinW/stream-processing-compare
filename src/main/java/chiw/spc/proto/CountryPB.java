@@ -23,9 +23,9 @@ public final class CountryPB {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rcountry.proto\022\016chi.base.proto*.\n\nCount" +
-      "ryMsg\022\010\n\004None\020\000\022\006\n\002JP\020\001\022\006\n\002SG\020\002\022\006\n\002US\020\003B" +
-      "\035\n\016chiw.spc.protoB\tCountryPBP\001b\006proto3"
+      "\n\rcountry.proto\022\tCacheType*.\n\nCountryMsg" +
+      "\022\010\n\004None\020\000\022\006\n\002JP\020\001\022\006\n\002SG\020\002\022\006\n\002US\020\003B\035\n\016ch" +
+      "iw.spc.protoB\tCountryPBP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

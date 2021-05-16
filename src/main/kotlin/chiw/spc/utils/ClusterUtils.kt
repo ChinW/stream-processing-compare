@@ -8,8 +8,12 @@ import com.hazelcast.config.YamlConfigBuilder
 import com.hazelcast.core.HazelcastInstance
 import com.hazelcast.jet.Jet
 import com.hazelcast.jet.JetInstance
+import com.hazelcast.jet.Job
 import com.hazelcast.jet.config.JetConfig
+import com.hazelcast.jet.core.JobStatus
 import com.hazelcast.map.IMap
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 
 object ClusterUtils {
@@ -59,5 +63,20 @@ object ClusterUtils {
     fun <T>getCacheMap(dataMap: DataMap): IMap<String, T> {
         val cacheClient = getCacheClient()
         return cacheClient.getMap(dataMap.mapName);
+    }
+
+    fun cancelJob(job: Job?) {
+        if(job != null) {
+            log.info("[${job.name}] cancelling job, status: ${job.status}")
+            runBlocking {
+                while(job.status == JobStatus.RUNNING) {
+                    log.info("[${job.name}] job exists, status: ${job.status}, cancelling...")
+                    job.cancel()
+                    delay(500)
+                }
+            }
+            log.info("[${job.name}] cancelled")
+
+        }
     }
 }

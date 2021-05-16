@@ -1,12 +1,12 @@
 syntax = "proto3";
-package chi.base.proto;
+package CacheType;
 option java_multiple_files = true;
 option java_package = "chiw.spc.proto";
 option java_outer_classname = "CommodityPB";
 
 message CommodityMsg {
-  optional string id = 1;
-  optional string name = 2;
-  optional double price = 3;
-  optional double remainingQty = 4;
+  string id = 1;
+  string name = 2;
+  double price = 3;
+  double remainingQty = 4;
 }

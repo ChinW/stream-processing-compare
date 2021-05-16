@@ -4,11 +4,11 @@
 package chiw.spc.proto;
 
 /**
- * Protobuf type {@code chi.base.proto.CommodityMsg}
+ * Protobuf type {@code CacheType.CommodityMsg}
  */
 public final class CommodityMsg extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:chi.base.proto.CommodityMsg)
+    // @@protoc_insertion_point(message_implements:CacheType.CommodityMsg)
     CommodityMsgOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use CommodityMsg.newBuilder() to construct.
@@ -40,7 +40,6 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
-    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -53,23 +52,23 @@ private static final long serialVersionUID = 0L;
             break;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
-            bitField0_ |= 0x00000001;
+
             id_ = s;
             break;
           }
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
-            bitField0_ |= 0x00000002;
+
             name_ = s;
             break;
           }
           case 25: {
-            bitField0_ |= 0x00000004;
+
             price_ = input.readDouble();
             break;
           }
           case 33: {
-            bitField0_ |= 0x00000008;
+
             remainingQty_ = input.readDouble();
             break;
           }
@@ -94,28 +93,19 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return chiw.spc.proto.CommodityPB.internal_static_chi_base_proto_CommodityMsg_descriptor;
+    return chiw.spc.proto.CommodityPB.internal_static_CacheType_CommodityMsg_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return chiw.spc.proto.CommodityPB.internal_static_chi_base_proto_CommodityMsg_fieldAccessorTable
+    return chiw.spc.proto.CommodityPB.internal_static_CacheType_CommodityMsg_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             chiw.spc.proto.CommodityMsg.class, chiw.spc.proto.CommodityMsg.Builder.class);
   }
 
-  private int bitField0_;
   public static final int ID_FIELD_NUMBER = 1;
   private volatile java.lang.Object id_;
-  /**
-   * <code>string id = 1;</code>
-   * @return Whether the id field is set.
-   */
-  @java.lang.Override
-  public boolean hasId() {
-    return ((bitField0_ & 0x00000001) != 0);
-  }
   /**
    * <code>string id = 1;</code>
    * @return The id.
@@ -156,14 +146,6 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object name_;
   /**
    * <code>string name = 2;</code>
-   * @return Whether the name field is set.
-   */
-  @java.lang.Override
-  public boolean hasName() {
-    return ((bitField0_ & 0x00000002) != 0);
-  }
-  /**
-   * <code>string name = 2;</code>
    * @return The name.
    */
   @java.lang.Override
@@ -202,14 +184,6 @@ private static final long serialVersionUID = 0L;
   private double price_;
   /**
    * <code>double price = 3;</code>
-   * @return Whether the price field is set.
-   */
-  @java.lang.Override
-  public boolean hasPrice() {
-    return ((bitField0_ & 0x00000004) != 0);
-  }
-  /**
-   * <code>double price = 3;</code>
    * @return The price.
    */
   @java.lang.Override
@@ -219,14 +193,6 @@ private static final long serialVersionUID = 0L;
 
   public static final int REMAININGQTY_FIELD_NUMBER = 4;
   private double remainingQty_;
-  /**
-   * <code>double remainingQty = 4;</code>
-   * @return Whether the remainingQty field is set.
-   */
-  @java.lang.Override
-  public boolean hasRemainingQty() {
-    return ((bitField0_ & 0x00000008) != 0);
-  }
   /**
    * <code>double remainingQty = 4;</code>
    * @return The remainingQty.
@@ -250,16 +216,16 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (!getIdBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
     }
-    if (((bitField0_ & 0x00000002) != 0)) {
+    if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
+    if (price_ != 0D) {
       output.writeDouble(3, price_);
     }
-    if (((bitField0_ & 0x00000008) != 0)) {
+    if (remainingQty_ != 0D) {
       output.writeDouble(4, remainingQty_);
     }
     unknownFields.writeTo(output);
@@ -271,17 +237,17 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (((bitField0_ & 0x00000001) != 0)) {
+    if (!getIdBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
     }
-    if (((bitField0_ & 0x00000002) != 0)) {
+    if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
+    if (price_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(3, price_);
     }
-    if (((bitField0_ & 0x00000008) != 0)) {
+    if (remainingQty_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, remainingQty_);
     }
@@ -300,28 +266,16 @@ private static final long serialVersionUID = 0L;
     }
     chiw.spc.proto.CommodityMsg other = (chiw.spc.proto.CommodityMsg) obj;
 
-    if (hasId() != other.hasId()) return false;
-    if (hasId()) {
-      if (!getId()
-          .equals(other.getId())) return false;
-    }
-    if (hasName() != other.hasName()) return false;
-    if (hasName()) {
-      if (!getName()
-          .equals(other.getName())) return false;
-    }
-    if (hasPrice() != other.hasPrice()) return false;
-    if (hasPrice()) {
-      if (java.lang.Double.doubleToLongBits(getPrice())
-          != java.lang.Double.doubleToLongBits(
-              other.getPrice())) return false;
-    }
-    if (hasRemainingQty() != other.hasRemainingQty()) return false;
-    if (hasRemainingQty()) {
-      if (java.lang.Double.doubleToLongBits(getRemainingQty())
-          != java.lang.Double.doubleToLongBits(
-              other.getRemainingQty())) return false;
-    }
+    if (!getId()
+        .equals(other.getId())) return false;
+    if (!getName()
+        .equals(other.getName())) return false;
+    if (java.lang.Double.doubleToLongBits(getPrice())
+        != java.lang.Double.doubleToLongBits(
+            other.getPrice())) return false;
+    if (java.lang.Double.doubleToLongBits(getRemainingQty())
+        != java.lang.Double.doubleToLongBits(
+            other.getRemainingQty())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -333,24 +287,16 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasId()) {
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId().hashCode();
-    }
-    if (hasName()) {
-      hash = (37 * hash) + NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getName().hashCode();
-    }
-    if (hasPrice()) {
-      hash = (37 * hash) + PRICE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getPrice()));
-    }
-    if (hasRemainingQty()) {
-      hash = (37 * hash) + REMAININGQTY_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          java.lang.Double.doubleToLongBits(getRemainingQty()));
-    }
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + getId().hashCode();
+    hash = (37 * hash) + NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getName().hashCode();
+    hash = (37 * hash) + PRICE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getPrice()));
+    hash = (37 * hash) + REMAININGQTY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getRemainingQty()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -447,21 +393,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code chi.base.proto.CommodityMsg}
+   * Protobuf type {@code CacheType.CommodityMsg}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:chi.base.proto.CommodityMsg)
+      // @@protoc_insertion_point(builder_implements:CacheType.CommodityMsg)
       chiw.spc.proto.CommodityMsgOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chiw.spc.proto.CommodityPB.internal_static_chi_base_proto_CommodityMsg_descriptor;
+      return chiw.spc.proto.CommodityPB.internal_static_CacheType_CommodityMsg_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chiw.spc.proto.CommodityPB.internal_static_chi_base_proto_CommodityMsg_fieldAccessorTable
+      return chiw.spc.proto.CommodityPB.internal_static_CacheType_CommodityMsg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               chiw.spc.proto.CommodityMsg.class, chiw.spc.proto.CommodityMsg.Builder.class);
     }
@@ -485,20 +431,20 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       id_ = "";
-      bitField0_ = (bitField0_ & ~0x00000001);
+
       name_ = "";
-      bitField0_ = (bitField0_ & ~0x00000002);
+
       price_ = 0D;
-      bitField0_ = (bitField0_ & ~0x00000004);
+
       remainingQty_ = 0D;
-      bitField0_ = (bitField0_ & ~0x00000008);
+
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return chiw.spc.proto.CommodityPB.internal_static_chi_base_proto_CommodityMsg_descriptor;
+      return chiw.spc.proto.CommodityPB.internal_static_CacheType_CommodityMsg_descriptor;
     }
 
     @java.lang.Override
@@ -518,25 +464,10 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public chiw.spc.proto.CommodityMsg buildPartial() {
       chiw.spc.proto.CommodityMsg result = new chiw.spc.proto.CommodityMsg(this);
-      int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      if (((from_bitField0_ & 0x00000001) != 0)) {
-        to_bitField0_ |= 0x00000001;
-      }
       result.id_ = id_;
-      if (((from_bitField0_ & 0x00000002) != 0)) {
-        to_bitField0_ |= 0x00000002;
-      }
       result.name_ = name_;
-      if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.price_ = price_;
-        to_bitField0_ |= 0x00000004;
-      }
-      if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.remainingQty_ = remainingQty_;
-        to_bitField0_ |= 0x00000008;
-      }
-      result.bitField0_ = to_bitField0_;
+      result.price_ = price_;
+      result.remainingQty_ = remainingQty_;
       onBuilt();
       return result;
     }
@@ -585,20 +516,18 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(chiw.spc.proto.CommodityMsg other) {
       if (other == chiw.spc.proto.CommodityMsg.getDefaultInstance()) return this;
-      if (other.hasId()) {
-        bitField0_ |= 0x00000001;
+      if (!other.getId().isEmpty()) {
         id_ = other.id_;
         onChanged();
       }
-      if (other.hasName()) {
-        bitField0_ |= 0x00000002;
+      if (!other.getName().isEmpty()) {
         name_ = other.name_;
         onChanged();
       }
-      if (other.hasPrice()) {
+      if (other.getPrice() != 0D) {
         setPrice(other.getPrice());
       }
-      if (other.hasRemainingQty()) {
+      if (other.getRemainingQty() != 0D) {
         setRemainingQty(other.getRemainingQty());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -629,16 +558,8 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
     private java.lang.Object id_ = "";
-    /**
-     * <code>string id = 1;</code>
-     * @return Whether the id field is set.
-     */
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
     /**
      * <code>string id = 1;</code>
      * @return The id.
@@ -682,7 +603,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
       id_ = value;
       onChanged();
       return this;
@@ -692,7 +613,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearId() {
-      bitField0_ = (bitField0_ & ~0x00000001);
+      
       id_ = getDefaultInstance().getId();
       onChanged();
       return this;
@@ -708,20 +629,13 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      bitField0_ |= 0x00000001;
+      
       id_ = value;
       onChanged();
       return this;
     }
 
     private java.lang.Object name_ = "";
-    /**
-     * <code>string name = 2;</code>
-     * @return Whether the name field is set.
-     */
-    public boolean hasName() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
     /**
      * <code>string name = 2;</code>
      * @return The name.
@@ -765,7 +679,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
       name_ = value;
       onChanged();
       return this;
@@ -775,7 +689,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearName() {
-      bitField0_ = (bitField0_ & ~0x00000002);
+      
       name_ = getDefaultInstance().getName();
       onChanged();
       return this;
@@ -791,21 +705,13 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      bitField0_ |= 0x00000002;
+      
       name_ = value;
       onChanged();
       return this;
     }
 
     private double price_ ;
-    /**
-     * <code>double price = 3;</code>
-     * @return Whether the price field is set.
-     */
-    @java.lang.Override
-    public boolean hasPrice() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
     /**
      * <code>double price = 3;</code>
      * @return The price.
@@ -820,7 +726,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setPrice(double value) {
-      bitField0_ |= 0x00000004;
+      
       price_ = value;
       onChanged();
       return this;
@@ -830,21 +736,13 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPrice() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      
       price_ = 0D;
       onChanged();
       return this;
     }
 
     private double remainingQty_ ;
-    /**
-     * <code>double remainingQty = 4;</code>
-     * @return Whether the remainingQty field is set.
-     */
-    @java.lang.Override
-    public boolean hasRemainingQty() {
-      return ((bitField0_ & 0x00000008) != 0);
-    }
     /**
      * <code>double remainingQty = 4;</code>
      * @return The remainingQty.
@@ -859,7 +757,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setRemainingQty(double value) {
-      bitField0_ |= 0x00000008;
+      
       remainingQty_ = value;
       onChanged();
       return this;
@@ -869,7 +767,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearRemainingQty() {
-      bitField0_ = (bitField0_ & ~0x00000008);
+      
       remainingQty_ = 0D;
       onChanged();
       return this;
@@ -887,10 +785,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:chi.base.proto.CommodityMsg)
+    // @@protoc_insertion_point(builder_scope:CacheType.CommodityMsg)
   }
 
-  // @@protoc_insertion_point(class_scope:chi.base.proto.CommodityMsg)
+  // @@protoc_insertion_point(class_scope:CacheType.CommodityMsg)
   private static final chiw.spc.proto.CommodityMsg DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new chiw.spc.proto.CommodityMsg();

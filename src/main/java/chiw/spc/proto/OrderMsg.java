@@ -4,11 +4,11 @@
 package chiw.spc.proto;
 
 /**
- * Protobuf type {@code chi.base.proto.OrderMsg}
+ * Protobuf type {@code CacheType.OrderMsg}
  */
 public final class OrderMsg extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:chi.base.proto.OrderMsg)
+    // @@protoc_insertion_point(message_implements:CacheType.OrderMsg)
     OrderMsgOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use OrderMsg.newBuilder() to construct.
@@ -103,6 +103,16 @@ private static final long serialVersionUID = 0L;
             timeCost_ = input.readInt32();
             break;
           }
+          case 72: {
+
+            hzCustomId_ = input.readInt32();
+            break;
+          }
+          case 80: {
+            bitField0_ |= 0x00000100;
+            isValid_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -124,18 +134,29 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return chiw.spc.proto.OrderPB.internal_static_chi_base_proto_OrderMsg_descriptor;
+    return chiw.spc.proto.OrderPB.internal_static_CacheType_OrderMsg_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return chiw.spc.proto.OrderPB.internal_static_chi_base_proto_OrderMsg_fieldAccessorTable
+    return chiw.spc.proto.OrderPB.internal_static_CacheType_OrderMsg_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             chiw.spc.proto.OrderMsg.class, chiw.spc.proto.OrderMsg.Builder.class);
   }
 
   private int bitField0_;
+  public static final int HZCUSTOMID_FIELD_NUMBER = 9;
+  private int hzCustomId_;
+  /**
+   * <code>int32 hzCustomId = 9;</code>
+   * @return The hzCustomId.
+   */
+  @java.lang.Override
+  public int getHzCustomId() {
+    return hzCustomId_;
+  }
+
   public static final int ID_FIELD_NUMBER = 1;
   private volatile java.lang.Object id_;
   /**
@@ -223,7 +244,7 @@ private static final long serialVersionUID = 0L;
   public static final int COMMODITY_FIELD_NUMBER = 4;
   private chiw.spc.proto.CommodityMsg commodity_;
   /**
-   * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+   * <code>.CacheType.CommodityMsg commodity = 4;</code>
    * @return Whether the commodity field is set.
    */
   @java.lang.Override
@@ -231,7 +252,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000008) != 0);
   }
   /**
-   * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+   * <code>.CacheType.CommodityMsg commodity = 4;</code>
    * @return The commodity.
    */
   @java.lang.Override
@@ -239,7 +260,7 @@ private static final long serialVersionUID = 0L;
     return commodity_ == null ? chiw.spc.proto.CommodityMsg.getDefaultInstance() : commodity_;
   }
   /**
-   * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+   * <code>.CacheType.CommodityMsg commodity = 4;</code>
    */
   @java.lang.Override
   public chiw.spc.proto.CommodityMsgOrBuilder getCommodityOrBuilder() {
@@ -249,21 +270,21 @@ private static final long serialVersionUID = 0L;
   public static final int COUNTRY_FIELD_NUMBER = 5;
   private int country_;
   /**
-   * <code>.chi.base.proto.CountryMsg country = 5;</code>
+   * <code>.CacheType.CountryMsg country = 5;</code>
    * @return Whether the country field is set.
    */
   @java.lang.Override public boolean hasCountry() {
     return ((bitField0_ & 0x00000010) != 0);
   }
   /**
-   * <code>.chi.base.proto.CountryMsg country = 5;</code>
+   * <code>.CacheType.CountryMsg country = 5;</code>
    * @return The enum numeric value on the wire for country.
    */
   @java.lang.Override public int getCountryValue() {
     return country_;
   }
   /**
-   * <code>.chi.base.proto.CountryMsg country = 5;</code>
+   * <code>.CacheType.CountryMsg country = 5;</code>
    * @return The country.
    */
   @java.lang.Override public chiw.spc.proto.CountryMsg getCountry() {
@@ -356,6 +377,25 @@ private static final long serialVersionUID = 0L;
     return timeCost_;
   }
 
+  public static final int ISVALID_FIELD_NUMBER = 10;
+  private boolean isValid_;
+  /**
+   * <code>bool isValid = 10;</code>
+   * @return Whether the isValid field is set.
+   */
+  @java.lang.Override
+  public boolean hasIsValid() {
+    return ((bitField0_ & 0x00000100) != 0);
+  }
+  /**
+   * <code>bool isValid = 10;</code>
+   * @return The isValid.
+   */
+  @java.lang.Override
+  public boolean getIsValid() {
+    return isValid_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -393,6 +433,12 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000080) != 0)) {
       output.writeInt32(8, timeCost_);
+    }
+    if (hzCustomId_ != 0) {
+      output.writeInt32(9, hzCustomId_);
+    }
+    if (((bitField0_ & 0x00000100) != 0)) {
+      output.writeBool(10, isValid_);
     }
     unknownFields.writeTo(output);
   }
@@ -433,6 +479,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(8, timeCost_);
     }
+    if (hzCustomId_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(9, hzCustomId_);
+    }
+    if (((bitField0_ & 0x00000100) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(10, isValid_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -448,6 +502,8 @@ private static final long serialVersionUID = 0L;
     }
     chiw.spc.proto.OrderMsg other = (chiw.spc.proto.OrderMsg) obj;
 
+    if (getHzCustomId()
+        != other.getHzCustomId()) return false;
     if (hasId() != other.hasId()) return false;
     if (hasId()) {
       if (!getId()
@@ -488,6 +544,11 @@ private static final long serialVersionUID = 0L;
       if (getTimeCost()
           != other.getTimeCost()) return false;
     }
+    if (hasIsValid() != other.hasIsValid()) return false;
+    if (hasIsValid()) {
+      if (getIsValid()
+          != other.getIsValid()) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -499,6 +560,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + HZCUSTOMID_FIELD_NUMBER;
+    hash = (53 * hash) + getHzCustomId();
     if (hasId()) {
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId().hashCode();
@@ -532,6 +595,11 @@ private static final long serialVersionUID = 0L;
     if (hasTimeCost()) {
       hash = (37 * hash) + TIMECOST_FIELD_NUMBER;
       hash = (53 * hash) + getTimeCost();
+    }
+    if (hasIsValid()) {
+      hash = (37 * hash) + ISVALID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsValid());
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -629,21 +697,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code chi.base.proto.OrderMsg}
+   * Protobuf type {@code CacheType.OrderMsg}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:chi.base.proto.OrderMsg)
+      // @@protoc_insertion_point(builder_implements:CacheType.OrderMsg)
       chiw.spc.proto.OrderMsgOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return chiw.spc.proto.OrderPB.internal_static_chi_base_proto_OrderMsg_descriptor;
+      return chiw.spc.proto.OrderPB.internal_static_CacheType_OrderMsg_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return chiw.spc.proto.OrderPB.internal_static_chi_base_proto_OrderMsg_fieldAccessorTable
+      return chiw.spc.proto.OrderPB.internal_static_CacheType_OrderMsg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               chiw.spc.proto.OrderMsg.class, chiw.spc.proto.OrderMsg.Builder.class);
     }
@@ -667,6 +735,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      hzCustomId_ = 0;
+
       id_ = "";
       bitField0_ = (bitField0_ & ~0x00000001);
       quantity_ = 0;
@@ -687,13 +757,15 @@ private static final long serialVersionUID = 0L;
       bitField0_ = (bitField0_ & ~0x00000040);
       timeCost_ = 0;
       bitField0_ = (bitField0_ & ~0x00000080);
+      isValid_ = false;
+      bitField0_ = (bitField0_ & ~0x00000100);
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return chiw.spc.proto.OrderPB.internal_static_chi_base_proto_OrderMsg_descriptor;
+      return chiw.spc.proto.OrderPB.internal_static_CacheType_OrderMsg_descriptor;
     }
 
     @java.lang.Override
@@ -715,6 +787,7 @@ private static final long serialVersionUID = 0L;
       chiw.spc.proto.OrderMsg result = new chiw.spc.proto.OrderMsg(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
+      result.hzCustomId_ = hzCustomId_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
         to_bitField0_ |= 0x00000001;
       }
@@ -750,6 +823,10 @@ private static final long serialVersionUID = 0L;
       if (((from_bitField0_ & 0x00000080) != 0)) {
         result.timeCost_ = timeCost_;
         to_bitField0_ |= 0x00000080;
+      }
+      if (((from_bitField0_ & 0x00000100) != 0)) {
+        result.isValid_ = isValid_;
+        to_bitField0_ |= 0x00000100;
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -800,6 +877,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(chiw.spc.proto.OrderMsg other) {
       if (other == chiw.spc.proto.OrderMsg.getDefaultInstance()) return this;
+      if (other.getHzCustomId() != 0) {
+        setHzCustomId(other.getHzCustomId());
+      }
       if (other.hasId()) {
         bitField0_ |= 0x00000001;
         id_ = other.id_;
@@ -827,6 +907,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasTimeCost()) {
         setTimeCost(other.getTimeCost());
+      }
+      if (other.hasIsValid()) {
+        setIsValid(other.getIsValid());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -857,6 +940,37 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     private int bitField0_;
+
+    private int hzCustomId_ ;
+    /**
+     * <code>int32 hzCustomId = 9;</code>
+     * @return The hzCustomId.
+     */
+    @java.lang.Override
+    public int getHzCustomId() {
+      return hzCustomId_;
+    }
+    /**
+     * <code>int32 hzCustomId = 9;</code>
+     * @param value The hzCustomId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHzCustomId(int value) {
+      
+      hzCustomId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 hzCustomId = 9;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearHzCustomId() {
+      
+      hzCustomId_ = 0;
+      onChanged();
+      return this;
+    }
 
     private java.lang.Object id_ = "";
     /**
@@ -1023,14 +1137,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         chiw.spc.proto.CommodityMsg, chiw.spc.proto.CommodityMsg.Builder, chiw.spc.proto.CommodityMsgOrBuilder> commodityBuilder_;
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      * @return Whether the commodity field is set.
      */
     public boolean hasCommodity() {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      * @return The commodity.
      */
     public chiw.spc.proto.CommodityMsg getCommodity() {
@@ -1041,7 +1155,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder setCommodity(chiw.spc.proto.CommodityMsg value) {
       if (commodityBuilder_ == null) {
@@ -1057,7 +1171,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder setCommodity(
         chiw.spc.proto.CommodityMsg.Builder builderForValue) {
@@ -1071,7 +1185,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder mergeCommodity(chiw.spc.proto.CommodityMsg value) {
       if (commodityBuilder_ == null) {
@@ -1091,7 +1205,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder clearCommodity() {
       if (commodityBuilder_ == null) {
@@ -1104,7 +1218,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     public chiw.spc.proto.CommodityMsg.Builder getCommodityBuilder() {
       bitField0_ |= 0x00000008;
@@ -1112,7 +1226,7 @@ private static final long serialVersionUID = 0L;
       return getCommodityFieldBuilder().getBuilder();
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     public chiw.spc.proto.CommodityMsgOrBuilder getCommodityOrBuilder() {
       if (commodityBuilder_ != null) {
@@ -1123,7 +1237,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.chi.base.proto.CommodityMsg commodity = 4;</code>
+     * <code>.CacheType.CommodityMsg commodity = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         chiw.spc.proto.CommodityMsg, chiw.spc.proto.CommodityMsg.Builder, chiw.spc.proto.CommodityMsgOrBuilder> 
@@ -1141,21 +1255,21 @@ private static final long serialVersionUID = 0L;
 
     private int country_ = 0;
     /**
-     * <code>.chi.base.proto.CountryMsg country = 5;</code>
+     * <code>.CacheType.CountryMsg country = 5;</code>
      * @return Whether the country field is set.
      */
     @java.lang.Override public boolean hasCountry() {
       return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>.chi.base.proto.CountryMsg country = 5;</code>
+     * <code>.CacheType.CountryMsg country = 5;</code>
      * @return The enum numeric value on the wire for country.
      */
     @java.lang.Override public int getCountryValue() {
       return country_;
     }
     /**
-     * <code>.chi.base.proto.CountryMsg country = 5;</code>
+     * <code>.CacheType.CountryMsg country = 5;</code>
      * @param value The enum numeric value on the wire for country to set.
      * @return This builder for chaining.
      */
@@ -1166,7 +1280,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.chi.base.proto.CountryMsg country = 5;</code>
+     * <code>.CacheType.CountryMsg country = 5;</code>
      * @return The country.
      */
     @java.lang.Override
@@ -1176,7 +1290,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? chiw.spc.proto.CountryMsg.UNRECOGNIZED : result;
     }
     /**
-     * <code>.chi.base.proto.CountryMsg country = 5;</code>
+     * <code>.CacheType.CountryMsg country = 5;</code>
      * @param value The country to set.
      * @return This builder for chaining.
      */
@@ -1190,7 +1304,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.chi.base.proto.CountryMsg country = 5;</code>
+     * <code>.CacheType.CountryMsg country = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearCountry() {
@@ -1360,6 +1474,45 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    private boolean isValid_ ;
+    /**
+     * <code>bool isValid = 10;</code>
+     * @return Whether the isValid field is set.
+     */
+    @java.lang.Override
+    public boolean hasIsValid() {
+      return ((bitField0_ & 0x00000100) != 0);
+    }
+    /**
+     * <code>bool isValid = 10;</code>
+     * @return The isValid.
+     */
+    @java.lang.Override
+    public boolean getIsValid() {
+      return isValid_;
+    }
+    /**
+     * <code>bool isValid = 10;</code>
+     * @param value The isValid to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsValid(boolean value) {
+      bitField0_ |= 0x00000100;
+      isValid_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isValid = 10;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsValid() {
+      bitField0_ = (bitField0_ & ~0x00000100);
+      isValid_ = false;
+      onChanged();
+      return this;
+    }
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1373,10 +1526,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:chi.base.proto.OrderMsg)
+    // @@protoc_insertion_point(builder_scope:CacheType.OrderMsg)
   }
 
-  // @@protoc_insertion_point(class_scope:chi.base.proto.OrderMsg)
+  // @@protoc_insertion_point(class_scope:CacheType.OrderMsg)
   private static final chiw.spc.proto.OrderMsg DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new chiw.spc.proto.OrderMsg();

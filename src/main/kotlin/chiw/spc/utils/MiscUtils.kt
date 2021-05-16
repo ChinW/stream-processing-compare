@@ -52,6 +52,7 @@ object MiscUtils {
         val buffer = hashMapOf<String, OrderMsg>()
         for(index in 0 until amount) {
             val order = OrderMsg.newBuilder()
+                    .setHzCustomId(100)
                     .setId("order-msg-#${index}")
                     .setQuantity((Math.round(Math.ceil((Math.random() * 10000))) / 100).toInt())
                     .setCountry(CountryMsg.US)
@@ -69,4 +70,19 @@ object MiscUtils {
         orderMap.putAll(buffer)
         println("${DataMap.OrderMsg} size: ${orderMap.size}")
     }
+}
+
+fun main() {
+    val orderMap = ClusterUtils.getCacheMap<OrderMsg>(DataMap.OrderMsg)
+    val order = OrderMsg.newBuilder()
+        .setHzCustomId(100)
+        .setId("test")
+        .setQuantity(0)
+        .setIsValid(false)
+        .build()
+    orderMap.put(order.id, order)
+    order.toBuilder().setIsValid(false).setQuantity(0).build()
+    orderMap.put(order.id, order)
+    val returnedOrder = orderMap.get(order.id)
+    MiscUtils.fillOrderMsg(1000)
 }

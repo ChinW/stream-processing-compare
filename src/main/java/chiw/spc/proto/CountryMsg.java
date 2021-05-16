@@ -4,7 +4,7 @@
 package chiw.spc.proto;
 
 /**
- * Protobuf enum {@code chi.base.proto.CountryMsg}
+ * Protobuf enum {@code CacheType.CountryMsg}
  */
 public enum CountryMsg
     implements com.google.protobuf.ProtocolMessageEnum {
@@ -126,6 +126,6 @@ public enum CountryMsg
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:chi.base.proto.CountryMsg)
+  // @@protoc_insertion_point(enum_scope:CacheType.CountryMsg)
 }
 

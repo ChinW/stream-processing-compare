@@ -3,6 +3,7 @@ hazelcast-client:
   network:
     cluster-members:
       - 127.0.0.1:5601
+      - 127.0.0.1:5602
     smart-routing: false
   connection-strategy:
     connection-retry:

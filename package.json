@@ -1,0 +1,20 @@
+{
+  "name": "stream-processing-compare",
+  "version": "1.0.0",
+  "description": "Currently, it tests Flink and Jet.",
+  "main": "index.js",
+  "scripts": {
+    "build:pb": "protoc -I=./proto --java_out=./src/main/java ./proto/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChinW/stream-processing-compare.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChinW/stream-processing-compare/issues"
+  },
+  "homepage": "https://github.com/ChinW/stream-processing-compare#readme"
+}

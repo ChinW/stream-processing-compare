@@ -1,7 +1,14 @@
 package chiw.spc.jet
 
+import chiw.spc.proto.OrderMsg
+import chiw.spc.proto.OrderMsgOrBuilder
+import chiw.spc.types.ClassId
+import chiw.spc.types.OrderPortable
+import chiw.spc.types.PortableBase
 import chiw.spc.utils.ClusterUtils
 import chiw.spc.utils.MiscUtils
+import com.google.protobuf.Message
+import com.google.protobuf.MessageOrBuilder
 import com.hazelcast.function.Functions.wholeItem
 import com.hazelcast.jet.Jet
 import com.hazelcast.jet.JetInstance
@@ -63,6 +70,17 @@ class JetWordCount {
     }
 }
 
+fun < T: Message> test() {
+    val a = hashMapOf<String, T>()
+    val b = OrderPortable()
+    a["123"] = b as T
+}
+
 fun main(args: Array<String>) {
+    val t: (msg: Message) -> Unit = {
+        println(it)
+    }
+    test<OrderMsg>()
+    t(OrderMsg.getDefaultInstance())
     JetWordCount().go(1)
 }

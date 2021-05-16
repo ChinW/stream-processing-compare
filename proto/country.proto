@@ -1,5 +1,5 @@
 syntax = "proto3";
-package chi.base.proto;
+package CacheType;
 option java_multiple_files = true;
 option java_package = "chiw.spc.proto";
 option java_outer_classname = "CountryPB";

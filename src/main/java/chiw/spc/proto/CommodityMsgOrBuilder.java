@@ -4,14 +4,9 @@
 package chiw.spc.proto;
 
 public interface CommodityMsgOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:chi.base.proto.CommodityMsg)
+    // @@protoc_insertion_point(interface_extends:CacheType.CommodityMsg)
     com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>string id = 1;</code>
-   * @return Whether the id field is set.
-   */
-  boolean hasId();
   /**
    * <code>string id = 1;</code>
    * @return The id.
@@ -26,11 +21,6 @@ public interface CommodityMsgOrBuilder extends
 
   /**
    * <code>string name = 2;</code>
-   * @return Whether the name field is set.
-   */
-  boolean hasName();
-  /**
-   * <code>string name = 2;</code>
    * @return The name.
    */
   java.lang.String getName();
@@ -43,20 +33,10 @@ public interface CommodityMsgOrBuilder extends
 
   /**
    * <code>double price = 3;</code>
-   * @return Whether the price field is set.
-   */
-  boolean hasPrice();
-  /**
-   * <code>double price = 3;</code>
    * @return The price.
    */
   double getPrice();
 
-  /**
-   * <code>double remainingQty = 4;</code>
-   * @return Whether the remainingQty field is set.
-   */
-  boolean hasRemainingQty();
   /**
    * <code>double remainingQty = 4;</code>
    * @return The remainingQty.
