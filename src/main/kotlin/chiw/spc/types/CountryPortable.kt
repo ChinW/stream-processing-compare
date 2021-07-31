@@ -1,6 +1,6 @@
 package chiw.spc.types
 
-enum class CountryPortable(val countryName: String) {
+enum class wCountryPortable(val countryName: String) {
     None("None"),
     JP("Japan"),
     SG("Singapore"),

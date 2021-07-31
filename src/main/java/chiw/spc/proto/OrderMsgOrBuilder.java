@@ -14,121 +14,121 @@ public interface OrderMsgOrBuilder extends
   int getHzCustomId();
 
   /**
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    * @return Whether the id field is set.
    */
   boolean hasId();
   /**
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    * @return The id.
    */
   java.lang.String getId();
   /**
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    * @return The bytes for id.
    */
   com.google.protobuf.ByteString
       getIdBytes();
 
   /**
-   * <code>int32 quantity = 2;</code>
+   * <code>optional int32 quantity = 2;</code>
    * @return Whether the quantity field is set.
    */
   boolean hasQuantity();
   /**
-   * <code>int32 quantity = 2;</code>
+   * <code>optional int32 quantity = 2;</code>
    * @return The quantity.
    */
   int getQuantity();
 
   /**
-   * <code>float price = 3;</code>
+   * <code>optional float price = 3;</code>
    * @return Whether the price field is set.
    */
   boolean hasPrice();
   /**
-   * <code>float price = 3;</code>
+   * <code>optional float price = 3;</code>
    * @return The price.
    */
   float getPrice();
 
   /**
-   * <code>.CacheType.CommodityMsg commodity = 4;</code>
+   * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
    * @return Whether the commodity field is set.
    */
   boolean hasCommodity();
   /**
-   * <code>.CacheType.CommodityMsg commodity = 4;</code>
+   * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
    * @return The commodity.
    */
   chiw.spc.proto.CommodityMsg getCommodity();
   /**
-   * <code>.CacheType.CommodityMsg commodity = 4;</code>
+   * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
    */
   chiw.spc.proto.CommodityMsgOrBuilder getCommodityOrBuilder();
 
   /**
-   * <code>.CacheType.CountryMsg country = 5;</code>
+   * <code>optional .CacheType.CountryMsg country = 5;</code>
    * @return Whether the country field is set.
    */
   boolean hasCountry();
   /**
-   * <code>.CacheType.CountryMsg country = 5;</code>
+   * <code>optional .CacheType.CountryMsg country = 5;</code>
    * @return The enum numeric value on the wire for country.
    */
   int getCountryValue();
   /**
-   * <code>.CacheType.CountryMsg country = 5;</code>
+   * <code>optional .CacheType.CountryMsg country = 5;</code>
    * @return The country.
    */
   chiw.spc.proto.CountryMsg getCountry();
 
   /**
-   * <code>string userId = 6;</code>
+   * <code>optional string userId = 6;</code>
    * @return Whether the userId field is set.
    */
   boolean hasUserId();
   /**
-   * <code>string userId = 6;</code>
+   * <code>optional string userId = 6;</code>
    * @return The userId.
    */
   java.lang.String getUserId();
   /**
-   * <code>string userId = 6;</code>
+   * <code>optional string userId = 6;</code>
    * @return The bytes for userId.
    */
   com.google.protobuf.ByteString
       getUserIdBytes();
 
   /**
-   * <code>int64 createdAt = 7;</code>
+   * <code>optional int64 createdAt = 7;</code>
    * @return Whether the createdAt field is set.
    */
   boolean hasCreatedAt();
   /**
-   * <code>int64 createdAt = 7;</code>
+   * <code>optional int64 createdAt = 7;</code>
    * @return The createdAt.
    */
   long getCreatedAt();
 
   /**
-   * <code>int32 timeCost = 8;</code>
+   * <code>optional int32 timeCost = 8;</code>
    * @return Whether the timeCost field is set.
    */
   boolean hasTimeCost();
   /**
-   * <code>int32 timeCost = 8;</code>
+   * <code>optional int32 timeCost = 8;</code>
    * @return The timeCost.
    */
   int getTimeCost();
 
   /**
-   * <code>bool isValid = 10;</code>
+   * <code>optional bool isValid = 10;</code>
    * @return Whether the isValid field is set.
    */
   boolean hasIsValid();
   /**
-   * <code>bool isValid = 10;</code>
+   * <code>optional bool isValid = 10;</code>
    * @return The isValid.
    */
   boolean getIsValid();

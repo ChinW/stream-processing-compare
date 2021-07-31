@@ -160,7 +160,7 @@ private static final long serialVersionUID = 0L;
   public static final int ID_FIELD_NUMBER = 1;
   private volatile java.lang.Object id_;
   /**
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    * @return Whether the id field is set.
    */
   @java.lang.Override
@@ -168,7 +168,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    * @return The id.
    */
   @java.lang.Override
@@ -185,7 +185,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string id = 1;</code>
+   * <code>optional string id = 1;</code>
    * @return The bytes for id.
    */
   @java.lang.Override
@@ -206,7 +206,7 @@ private static final long serialVersionUID = 0L;
   public static final int QUANTITY_FIELD_NUMBER = 2;
   private int quantity_;
   /**
-   * <code>int32 quantity = 2;</code>
+   * <code>optional int32 quantity = 2;</code>
    * @return Whether the quantity field is set.
    */
   @java.lang.Override
@@ -214,7 +214,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000002) != 0);
   }
   /**
-   * <code>int32 quantity = 2;</code>
+   * <code>optional int32 quantity = 2;</code>
    * @return The quantity.
    */
   @java.lang.Override
@@ -225,7 +225,7 @@ private static final long serialVersionUID = 0L;
   public static final int PRICE_FIELD_NUMBER = 3;
   private float price_;
   /**
-   * <code>float price = 3;</code>
+   * <code>optional float price = 3;</code>
    * @return Whether the price field is set.
    */
   @java.lang.Override
@@ -233,7 +233,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000004) != 0);
   }
   /**
-   * <code>float price = 3;</code>
+   * <code>optional float price = 3;</code>
    * @return The price.
    */
   @java.lang.Override
@@ -244,7 +244,7 @@ private static final long serialVersionUID = 0L;
   public static final int COMMODITY_FIELD_NUMBER = 4;
   private chiw.spc.proto.CommodityMsg commodity_;
   /**
-   * <code>.CacheType.CommodityMsg commodity = 4;</code>
+   * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
    * @return Whether the commodity field is set.
    */
   @java.lang.Override
@@ -252,7 +252,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000008) != 0);
   }
   /**
-   * <code>.CacheType.CommodityMsg commodity = 4;</code>
+   * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
    * @return The commodity.
    */
   @java.lang.Override
@@ -260,7 +260,7 @@ private static final long serialVersionUID = 0L;
     return commodity_ == null ? chiw.spc.proto.CommodityMsg.getDefaultInstance() : commodity_;
   }
   /**
-   * <code>.CacheType.CommodityMsg commodity = 4;</code>
+   * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
    */
   @java.lang.Override
   public chiw.spc.proto.CommodityMsgOrBuilder getCommodityOrBuilder() {
@@ -270,21 +270,21 @@ private static final long serialVersionUID = 0L;
   public static final int COUNTRY_FIELD_NUMBER = 5;
   private int country_;
   /**
-   * <code>.CacheType.CountryMsg country = 5;</code>
+   * <code>optional .CacheType.CountryMsg country = 5;</code>
    * @return Whether the country field is set.
    */
   @java.lang.Override public boolean hasCountry() {
     return ((bitField0_ & 0x00000010) != 0);
   }
   /**
-   * <code>.CacheType.CountryMsg country = 5;</code>
+   * <code>optional .CacheType.CountryMsg country = 5;</code>
    * @return The enum numeric value on the wire for country.
    */
   @java.lang.Override public int getCountryValue() {
     return country_;
   }
   /**
-   * <code>.CacheType.CountryMsg country = 5;</code>
+   * <code>optional .CacheType.CountryMsg country = 5;</code>
    * @return The country.
    */
   @java.lang.Override public chiw.spc.proto.CountryMsg getCountry() {
@@ -296,7 +296,7 @@ private static final long serialVersionUID = 0L;
   public static final int USERID_FIELD_NUMBER = 6;
   private volatile java.lang.Object userId_;
   /**
-   * <code>string userId = 6;</code>
+   * <code>optional string userId = 6;</code>
    * @return Whether the userId field is set.
    */
   @java.lang.Override
@@ -304,7 +304,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000020) != 0);
   }
   /**
-   * <code>string userId = 6;</code>
+   * <code>optional string userId = 6;</code>
    * @return The userId.
    */
   @java.lang.Override
@@ -321,7 +321,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string userId = 6;</code>
+   * <code>optional string userId = 6;</code>
    * @return The bytes for userId.
    */
   @java.lang.Override
@@ -342,7 +342,7 @@ private static final long serialVersionUID = 0L;
   public static final int CREATEDAT_FIELD_NUMBER = 7;
   private long createdAt_;
   /**
-   * <code>int64 createdAt = 7;</code>
+   * <code>optional int64 createdAt = 7;</code>
    * @return Whether the createdAt field is set.
    */
   @java.lang.Override
@@ -350,7 +350,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000040) != 0);
   }
   /**
-   * <code>int64 createdAt = 7;</code>
+   * <code>optional int64 createdAt = 7;</code>
    * @return The createdAt.
    */
   @java.lang.Override
@@ -361,7 +361,7 @@ private static final long serialVersionUID = 0L;
   public static final int TIMECOST_FIELD_NUMBER = 8;
   private int timeCost_;
   /**
-   * <code>int32 timeCost = 8;</code>
+   * <code>optional int32 timeCost = 8;</code>
    * @return Whether the timeCost field is set.
    */
   @java.lang.Override
@@ -369,7 +369,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000080) != 0);
   }
   /**
-   * <code>int32 timeCost = 8;</code>
+   * <code>optional int32 timeCost = 8;</code>
    * @return The timeCost.
    */
   @java.lang.Override
@@ -380,7 +380,7 @@ private static final long serialVersionUID = 0L;
   public static final int ISVALID_FIELD_NUMBER = 10;
   private boolean isValid_;
   /**
-   * <code>bool isValid = 10;</code>
+   * <code>optional bool isValid = 10;</code>
    * @return Whether the isValid field is set.
    */
   @java.lang.Override
@@ -388,7 +388,7 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000100) != 0);
   }
   /**
-   * <code>bool isValid = 10;</code>
+   * <code>optional bool isValid = 10;</code>
    * @return The isValid.
    */
   @java.lang.Override
@@ -974,14 +974,14 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object id_ = "";
     /**
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      * @return Whether the id field is set.
      */
     public boolean hasId() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      * @return The id.
      */
     public java.lang.String getId() {
@@ -997,7 +997,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      * @return The bytes for id.
      */
     public com.google.protobuf.ByteString
@@ -1014,7 +1014,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      * @param value The id to set.
      * @return This builder for chaining.
      */
@@ -1029,7 +1029,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearId() {
@@ -1039,7 +1039,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>optional string id = 1;</code>
      * @param value The bytes for id to set.
      * @return This builder for chaining.
      */
@@ -1057,7 +1057,7 @@ private static final long serialVersionUID = 0L;
 
     private int quantity_ ;
     /**
-     * <code>int32 quantity = 2;</code>
+     * <code>optional int32 quantity = 2;</code>
      * @return Whether the quantity field is set.
      */
     @java.lang.Override
@@ -1065,7 +1065,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>int32 quantity = 2;</code>
+     * <code>optional int32 quantity = 2;</code>
      * @return The quantity.
      */
     @java.lang.Override
@@ -1073,7 +1073,7 @@ private static final long serialVersionUID = 0L;
       return quantity_;
     }
     /**
-     * <code>int32 quantity = 2;</code>
+     * <code>optional int32 quantity = 2;</code>
      * @param value The quantity to set.
      * @return This builder for chaining.
      */
@@ -1084,7 +1084,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 quantity = 2;</code>
+     * <code>optional int32 quantity = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearQuantity() {
@@ -1096,7 +1096,7 @@ private static final long serialVersionUID = 0L;
 
     private float price_ ;
     /**
-     * <code>float price = 3;</code>
+     * <code>optional float price = 3;</code>
      * @return Whether the price field is set.
      */
     @java.lang.Override
@@ -1104,7 +1104,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>float price = 3;</code>
+     * <code>optional float price = 3;</code>
      * @return The price.
      */
     @java.lang.Override
@@ -1112,7 +1112,7 @@ private static final long serialVersionUID = 0L;
       return price_;
     }
     /**
-     * <code>float price = 3;</code>
+     * <code>optional float price = 3;</code>
      * @param value The price to set.
      * @return This builder for chaining.
      */
@@ -1123,7 +1123,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>float price = 3;</code>
+     * <code>optional float price = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearPrice() {
@@ -1137,14 +1137,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         chiw.spc.proto.CommodityMsg, chiw.spc.proto.CommodityMsg.Builder, chiw.spc.proto.CommodityMsgOrBuilder> commodityBuilder_;
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      * @return Whether the commodity field is set.
      */
     public boolean hasCommodity() {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      * @return The commodity.
      */
     public chiw.spc.proto.CommodityMsg getCommodity() {
@@ -1155,7 +1155,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder setCommodity(chiw.spc.proto.CommodityMsg value) {
       if (commodityBuilder_ == null) {
@@ -1171,7 +1171,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder setCommodity(
         chiw.spc.proto.CommodityMsg.Builder builderForValue) {
@@ -1185,7 +1185,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder mergeCommodity(chiw.spc.proto.CommodityMsg value) {
       if (commodityBuilder_ == null) {
@@ -1205,7 +1205,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public Builder clearCommodity() {
       if (commodityBuilder_ == null) {
@@ -1218,7 +1218,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public chiw.spc.proto.CommodityMsg.Builder getCommodityBuilder() {
       bitField0_ |= 0x00000008;
@@ -1226,7 +1226,7 @@ private static final long serialVersionUID = 0L;
       return getCommodityFieldBuilder().getBuilder();
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public chiw.spc.proto.CommodityMsgOrBuilder getCommodityOrBuilder() {
       if (commodityBuilder_ != null) {
@@ -1237,7 +1237,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.CacheType.CommodityMsg commodity = 4;</code>
+     * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         chiw.spc.proto.CommodityMsg, chiw.spc.proto.CommodityMsg.Builder, chiw.spc.proto.CommodityMsgOrBuilder> 
@@ -1255,21 +1255,21 @@ private static final long serialVersionUID = 0L;
 
     private int country_ = 0;
     /**
-     * <code>.CacheType.CountryMsg country = 5;</code>
+     * <code>optional .CacheType.CountryMsg country = 5;</code>
      * @return Whether the country field is set.
      */
     @java.lang.Override public boolean hasCountry() {
       return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>.CacheType.CountryMsg country = 5;</code>
+     * <code>optional .CacheType.CountryMsg country = 5;</code>
      * @return The enum numeric value on the wire for country.
      */
     @java.lang.Override public int getCountryValue() {
       return country_;
     }
     /**
-     * <code>.CacheType.CountryMsg country = 5;</code>
+     * <code>optional .CacheType.CountryMsg country = 5;</code>
      * @param value The enum numeric value on the wire for country to set.
      * @return This builder for chaining.
      */
@@ -1280,7 +1280,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CacheType.CountryMsg country = 5;</code>
+     * <code>optional .CacheType.CountryMsg country = 5;</code>
      * @return The country.
      */
     @java.lang.Override
@@ -1290,7 +1290,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? chiw.spc.proto.CountryMsg.UNRECOGNIZED : result;
     }
     /**
-     * <code>.CacheType.CountryMsg country = 5;</code>
+     * <code>optional .CacheType.CountryMsg country = 5;</code>
      * @param value The country to set.
      * @return This builder for chaining.
      */
@@ -1304,7 +1304,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.CacheType.CountryMsg country = 5;</code>
+     * <code>optional .CacheType.CountryMsg country = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearCountry() {
@@ -1316,14 +1316,14 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object userId_ = "";
     /**
-     * <code>string userId = 6;</code>
+     * <code>optional string userId = 6;</code>
      * @return Whether the userId field is set.
      */
     public boolean hasUserId() {
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <code>string userId = 6;</code>
+     * <code>optional string userId = 6;</code>
      * @return The userId.
      */
     public java.lang.String getUserId() {
@@ -1339,7 +1339,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string userId = 6;</code>
+     * <code>optional string userId = 6;</code>
      * @return The bytes for userId.
      */
     public com.google.protobuf.ByteString
@@ -1356,7 +1356,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string userId = 6;</code>
+     * <code>optional string userId = 6;</code>
      * @param value The userId to set.
      * @return This builder for chaining.
      */
@@ -1371,7 +1371,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string userId = 6;</code>
+     * <code>optional string userId = 6;</code>
      * @return This builder for chaining.
      */
     public Builder clearUserId() {
@@ -1381,7 +1381,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string userId = 6;</code>
+     * <code>optional string userId = 6;</code>
      * @param value The bytes for userId to set.
      * @return This builder for chaining.
      */
@@ -1399,7 +1399,7 @@ private static final long serialVersionUID = 0L;
 
     private long createdAt_ ;
     /**
-     * <code>int64 createdAt = 7;</code>
+     * <code>optional int64 createdAt = 7;</code>
      * @return Whether the createdAt field is set.
      */
     @java.lang.Override
@@ -1407,7 +1407,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000040) != 0);
     }
     /**
-     * <code>int64 createdAt = 7;</code>
+     * <code>optional int64 createdAt = 7;</code>
      * @return The createdAt.
      */
     @java.lang.Override
@@ -1415,7 +1415,7 @@ private static final long serialVersionUID = 0L;
       return createdAt_;
     }
     /**
-     * <code>int64 createdAt = 7;</code>
+     * <code>optional int64 createdAt = 7;</code>
      * @param value The createdAt to set.
      * @return This builder for chaining.
      */
@@ -1426,7 +1426,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int64 createdAt = 7;</code>
+     * <code>optional int64 createdAt = 7;</code>
      * @return This builder for chaining.
      */
     public Builder clearCreatedAt() {
@@ -1438,7 +1438,7 @@ private static final long serialVersionUID = 0L;
 
     private int timeCost_ ;
     /**
-     * <code>int32 timeCost = 8;</code>
+     * <code>optional int32 timeCost = 8;</code>
      * @return Whether the timeCost field is set.
      */
     @java.lang.Override
@@ -1446,7 +1446,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000080) != 0);
     }
     /**
-     * <code>int32 timeCost = 8;</code>
+     * <code>optional int32 timeCost = 8;</code>
      * @return The timeCost.
      */
     @java.lang.Override
@@ -1454,7 +1454,7 @@ private static final long serialVersionUID = 0L;
       return timeCost_;
     }
     /**
-     * <code>int32 timeCost = 8;</code>
+     * <code>optional int32 timeCost = 8;</code>
      * @param value The timeCost to set.
      * @return This builder for chaining.
      */
@@ -1465,7 +1465,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 timeCost = 8;</code>
+     * <code>optional int32 timeCost = 8;</code>
      * @return This builder for chaining.
      */
     public Builder clearTimeCost() {
@@ -1477,7 +1477,7 @@ private static final long serialVersionUID = 0L;
 
     private boolean isValid_ ;
     /**
-     * <code>bool isValid = 10;</code>
+     * <code>optional bool isValid = 10;</code>
      * @return Whether the isValid field is set.
      */
     @java.lang.Override
@@ -1485,7 +1485,7 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000100) != 0);
     }
     /**
-     * <code>bool isValid = 10;</code>
+     * <code>optional bool isValid = 10;</code>
      * @return The isValid.
      */
     @java.lang.Override
@@ -1493,7 +1493,7 @@ private static final long serialVersionUID = 0L;
       return isValid_;
     }
     /**
-     * <code>bool isValid = 10;</code>
+     * <code>optional bool isValid = 10;</code>
      * @param value The isValid to set.
      * @return This builder for chaining.
      */
@@ -1504,7 +1504,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>bool isValid = 10;</code>
+     * <code>optional bool isValid = 10;</code>
      * @return This builder for chaining.
      */
     public Builder clearIsValid() {
