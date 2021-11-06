@@ -1,5 +1,10 @@
 package chiw.spc.proto;
 
 fun main() {
-   val type = CommodityTypeMsg.descriptorForType.fields
+   CommodityTypeMsg.valueOf("")
+   val fields = CommodityMsg.getDescriptor().fields
+   for ( field in fields) {
+      field.enumType.value
+      println(field.type)
+   }
 }

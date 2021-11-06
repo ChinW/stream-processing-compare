@@ -5,7 +5,7 @@ Currently, it tests Flink and Jet.
 ### The Tested Pipeline
 
 #### WordCount Bomb
-```aidl
+```
 Source (read from file, 5MB)
  -> Process: Split line into words (Here here is a bomb, every word emit 1000 times)
  -> Group/Count
@@ -18,7 +18,7 @@ This pipeline measures 2 serializations:
 - Hazelcast Portable vs Flink TypeInformation 
 - Protobuf
 
-```aidl
+```
 Source (remote DB, 10k items)
  -> Process 1: each item emit 1000 times, emit payload Tuple2<Other Item, Item>
  -> Process 2: do nothing, transfer the second item of payload
@@ -79,7 +79,7 @@ digraph DAG {
 ```
 
 Log:
-```aidl
+```
 ## WordCount
 Start time: 2021-04-18T13:52:52.106
 Duration: 00:00:36.459
@@ -105,7 +105,7 @@ Jet: finish in 8.805681357 seconds.
 ```
 ##### Flink 1.12.2 for Scala 2.11
 `flink-config.yaml` Configuration:
-```aidl
+```
 jobmanager.rpc.address: localhost
 jobmanager.rpc.port: 6123
 jobmanager.memory.process.size: 2096m
@@ -115,7 +115,7 @@ parallelism.default: 8
 ```
 
 WordCount Pipeline:
-```aidl
+```
 {
   "nodes" : [ {
     "id" : 1,
@@ -161,7 +161,7 @@ WordCount Pipeline:
 ```
 
 Log:
-```aidl
+```
 ❯ flink run -c chiw.spc.flink.FlinkWordCountKt stream-processing-compare-1.0-SNAPSHOT.jar
 Job with JobID 163ce849a663e45f3c3028a98f260e7c has finished.
 Job Runtime: 88614 ms

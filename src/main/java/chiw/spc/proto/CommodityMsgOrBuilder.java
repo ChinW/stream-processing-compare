@@ -42,4 +42,15 @@ public interface CommodityMsgOrBuilder extends
    * @return The remainingQty.
    */
   double getRemainingQty();
+
+  /**
+   * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+   * @return The enum numeric value on the wire for type.
+   */
+  int getTypeValue();
+  /**
+   * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+   * @return The type.
+   */
+  chiw.spc.proto.CommodityTypeMsg getType();
 }

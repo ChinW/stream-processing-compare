@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private CommodityMsg() {
     id_ = "";
     name_ = "";
+    type_ = 0;
   }
 
   @java.lang.Override
@@ -70,6 +71,12 @@ private static final long serialVersionUID = 0L;
           case 33: {
 
             remainingQty_ = input.readDouble();
+            break;
+          }
+          case 40: {
+            int rawValue = input.readEnum();
+
+            type_ = rawValue;
             break;
           }
           default: {
@@ -202,6 +209,25 @@ private static final long serialVersionUID = 0L;
     return remainingQty_;
   }
 
+  public static final int TYPE_FIELD_NUMBER = 5;
+  private int type_;
+  /**
+   * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+   * @return The enum numeric value on the wire for type.
+   */
+  @java.lang.Override public int getTypeValue() {
+    return type_;
+  }
+  /**
+   * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+   * @return The type.
+   */
+  @java.lang.Override public chiw.spc.proto.CommodityTypeMsg getType() {
+    @SuppressWarnings("deprecation")
+    chiw.spc.proto.CommodityTypeMsg result = chiw.spc.proto.CommodityTypeMsg.valueOf(type_);
+    return result == null ? chiw.spc.proto.CommodityTypeMsg.UNRECOGNIZED : result;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -228,6 +254,9 @@ private static final long serialVersionUID = 0L;
     if (remainingQty_ != 0D) {
       output.writeDouble(4, remainingQty_);
     }
+    if (type_ != chiw.spc.proto.CommodityTypeMsg.VIRTUAL.getNumber()) {
+      output.writeEnum(5, type_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -250,6 +279,10 @@ private static final long serialVersionUID = 0L;
     if (remainingQty_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
         .computeDoubleSize(4, remainingQty_);
+    }
+    if (type_ != chiw.spc.proto.CommodityTypeMsg.VIRTUAL.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(5, type_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -276,6 +309,7 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Double.doubleToLongBits(getRemainingQty())
         != java.lang.Double.doubleToLongBits(
             other.getRemainingQty())) return false;
+    if (type_ != other.type_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -297,6 +331,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + REMAININGQTY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         java.lang.Double.doubleToLongBits(getRemainingQty()));
+    hash = (37 * hash) + TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + type_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -438,6 +474,8 @@ private static final long serialVersionUID = 0L;
 
       remainingQty_ = 0D;
 
+      type_ = 0;
+
       return this;
     }
 
@@ -468,6 +506,7 @@ private static final long serialVersionUID = 0L;
       result.name_ = name_;
       result.price_ = price_;
       result.remainingQty_ = remainingQty_;
+      result.type_ = type_;
       onBuilt();
       return result;
     }
@@ -529,6 +568,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getRemainingQty() != 0D) {
         setRemainingQty(other.getRemainingQty());
+      }
+      if (other.type_ != 0) {
+        setTypeValue(other.getTypeValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -769,6 +811,60 @@ private static final long serialVersionUID = 0L;
     public Builder clearRemainingQty() {
       
       remainingQty_ = 0D;
+      onChanged();
+      return this;
+    }
+
+    private int type_ = 0;
+    /**
+     * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    @java.lang.Override public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+     * @param value The enum numeric value on the wire for type to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTypeValue(int value) {
+      
+      type_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public chiw.spc.proto.CommodityTypeMsg getType() {
+      @SuppressWarnings("deprecation")
+      chiw.spc.proto.CommodityTypeMsg result = chiw.spc.proto.CommodityTypeMsg.valueOf(type_);
+      return result == null ? chiw.spc.proto.CommodityTypeMsg.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+     * @param value The type to set.
+     * @return This builder for chaining.
+     */
+    public Builder setType(chiw.spc.proto.CommodityTypeMsg value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.CacheType.CommodityTypeMsg type = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearType() {
+      
+      type_ = 0;
       onChanged();
       return this;
     }

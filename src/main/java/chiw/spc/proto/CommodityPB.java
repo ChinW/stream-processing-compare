@@ -28,21 +28,25 @@ public final class CommodityPB {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017commodity.proto\022\tCacheType\"M\n\014Commodit" +
-      "yMsg\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030" +
-      "\003 \001(\001\022\024\n\014remainingQty\030\004 \001(\001B\037\n\016chiw.spc." +
-      "protoB\013CommodityPBP\001b\006proto3"
+      "\n\017commodity.proto\022\tCacheType\032\013enums.prot" +
+      "o\"x\n\014CommodityMsg\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 " +
+      "\001(\t\022\r\n\005price\030\003 \001(\001\022\024\n\014remainingQty\030\004 \001(\001" +
+      "\022)\n\004type\030\005 \001(\0162\033.CacheType.CommodityType" +
+      "MsgB\037\n\016chiw.spc.protoB\013CommodityPBP\001b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          chiw.spc.proto.EnumsPB.getDescriptor(),
         });
     internal_static_CacheType_CommodityMsg_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_CacheType_CommodityMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CacheType_CommodityMsg_descriptor,
-        new java.lang.String[] { "Id", "Name", "Price", "RemainingQty", });
+        new java.lang.String[] { "Id", "Name", "Price", "RemainingQty", "Type", });
+    chiw.spc.proto.EnumsPB.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
