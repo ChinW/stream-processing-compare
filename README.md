@@ -1,6 +1,6 @@
 ## Stream-Processing-Compare
 
-Currently, it tests Flink and Jet.
+It tests Flink and Jet.
 
 ### The Tested Pipeline
 
