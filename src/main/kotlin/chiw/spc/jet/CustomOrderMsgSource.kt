@@ -27,14 +27,14 @@ object CustomOrderMsgSource {
             .build()
     }
 
-    class OrderMsgListener(dataMap: DataMap, val isBatch: Boolean = false): Serializable {
+    class OrderMsgListener(dataMap: DataMap, val isBatch: Boolean = false) : Serializable {
         val dataBuffer: ConcurrentHashMap<String, OrderMsg> = ConcurrentHashMap()
         val cacheMap = ClusterUtils.getCacheMap<OrderMsg>(dataMap)
 
         init {
             val exisitingData = cacheMap.values.associateByTo(HashMap()) { it.id }
             dataBuffer.putAll(exisitingData)
-            if(!isBatch) {
+            if (!isBatch) {
                 val handler = object : EntryAddedListener<String, OrderMsg>,
                     EntryUpdatedListener<String, OrderMsg> {
                     override fun entryAdded(event: EntryEvent<String, OrderMsg>) {
@@ -61,7 +61,7 @@ object CustomOrderMsgSource {
                     socketBuffer.add(item)
                 }
                 dataBuffer.clear()
-                if(isBatch) {
+                if (isBatch) {
                     socketBuffer.close()
                 }
             }

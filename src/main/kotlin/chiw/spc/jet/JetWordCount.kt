@@ -36,11 +36,11 @@ class JetWordCount {
         p.readFrom(TestSources.items(MiscUtils.getBookLines()))
             .flatMap { entry ->
                 val output = arrayListOf<String>()
-                val words = delimiter.split(entry.toLowerCase() )
+                val words = delimiter.split(entry.toLowerCase())
                 repeat(bomb) { // bomb
                     output.addAll(words)
                 }
-                traverseArray( output.toTypedArray() )
+                traverseArray(output.toTypedArray())
             }
             .filter { word -> word.isNotEmpty() }
             .groupingKey(wholeItem())
@@ -49,7 +49,7 @@ class JetWordCount {
         return p
     }
 
-     fun go(bomb: Int) {
+    fun go(bomb: Int) {
         try {
             val p: Pipeline = buildPipeline(bomb)
             val timeCost = measureNanoTime {
@@ -70,7 +70,7 @@ class JetWordCount {
     }
 }
 
-fun < T: Message> test() {
+fun <T : Message> test() {
     val a = hashMapOf<String, T>()
     val b = OrderPortable()
     a["123"] = b as T

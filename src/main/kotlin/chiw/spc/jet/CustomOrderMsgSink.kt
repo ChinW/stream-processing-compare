@@ -20,13 +20,14 @@ import kotlin.system.measureNanoTime
 
 object CustomOrderMsgSink {
     var count = 0
-   fun sink(dataMap: DataMap): Sink<OrderMsg> {
-       return SinkBuilder.sinkBuilder(dataMap.mapName) { ctx ->
-           OrderMsgWriter(dataMap)
-       }.receiveFn(OrderMsgWriter::receiveFn)
-           .flushFn(OrderMsgWriter::flushFn)
-           .build()
-   }
+    fun sink(dataMap: DataMap): Sink<OrderMsg> {
+        return SinkBuilder.sinkBuilder(dataMap.mapName) { ctx ->
+            OrderMsgWriter(dataMap)
+        }.receiveFn(OrderMsgWriter::receiveFn)
+            .flushFn(OrderMsgWriter::flushFn)
+            .build()
+    }
+
     class OrderMsgWriter(dataMap: DataMap) {
         val map = ClusterUtils.getCacheMap<OrderMsg>(dataMap)
         private val buffer = ConcurrentHashMap<String, OrderMsg>()

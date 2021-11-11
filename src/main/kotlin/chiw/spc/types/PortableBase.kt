@@ -31,12 +31,14 @@ abstract class PortableBase(val classId: ClassId) : DataIdentity<String>, Portab
                             Boolean::class.java -> field[this] = reader.readBoolean(field.name)
                             Double::class.java -> field[this] = reader.readDouble(field.name)
                             String::class.java -> field[this] = reader.readString(field.name)
-                            CountryPortable::class.java -> field[this] = CountryPortable.valueOf(reader.readString(field.name) ?: "")
+                            CountryPortable::class.java -> field[this] =
+                                CountryPortable.valueOf(reader.readString(field.name) ?: "")
                             Array<Boolean>::class.java -> field[this] = reader.readBooleanArray(field.name)
                             Array<Double>::class.java -> field[this] = reader.readDoubleArray(field.name)
                             Array<String>::class.java -> field[this] = reader.readStringArray(field.name)
-                            Array<CommodityPortable>::class.java -> field[this] = (reader.readPortableArray(field.name)!!
-                                .map { it as CommodityPortable }).toTypedArray()
+                            Array<CommodityPortable>::class.java -> field[this] =
+                                (reader.readPortableArray(field.name)!!
+                                    .map { it as CommodityPortable }).toTypedArray()
                             else -> {
                                 log.error("Unsupported type in reader")
                             }
@@ -64,7 +66,10 @@ abstract class PortableBase(val classId: ClassId) : DataIdentity<String>, Portab
                             Boolean::class.java -> writer.writeBoolean(field.name, value as Boolean)
                             Double::class.java -> writer.writeDouble(field.name, value as Double)
                             String::class.java -> writer.writeString(field.name, value as String)
-                            CountryPortable::class.java -> writer.writeString(field.name, (value as CountryPortable).name)
+                            CountryPortable::class.java -> writer.writeString(
+                                field.name,
+                                (value as CountryPortable).name
+                            )
                             // NOTE: for portable arrays field, if it is emtpy, hazelcast will raise an error like
                             // "Cannot write null portable array without explicitly registering class definition!"
                             // and in the following updates, this class definition will be always lack of this
@@ -81,13 +86,13 @@ abstract class PortableBase(val classId: ClassId) : DataIdentity<String>, Portab
                                 }
                             }
                             Array<Boolean>::class.java -> {
-                                    writer.writeBooleanArray(field.name, value as BooleanArray)
+                                writer.writeBooleanArray(field.name, value as BooleanArray)
                             }
                             Array<Double>::class.java -> {
-                                    writer.writeDoubleArray(field.name, value as DoubleArray)
+                                writer.writeDoubleArray(field.name, value as DoubleArray)
                             }
                             Array<String>::class.java -> {
-                                    writer.writeStringArray(field.name, value as Array<out String>?)
+                                writer.writeStringArray(field.name, value as Array<out String>?)
                             }
                             else -> {
                                 log.error("Unsupported type in writer")

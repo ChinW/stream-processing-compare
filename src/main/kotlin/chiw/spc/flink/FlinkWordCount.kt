@@ -51,7 +51,7 @@ class FlinkWordCount {
 
         override fun run(ctx: SourceFunction.SourceContext<String>) {
             val bookLines = MiscUtils.getBookLines()
-            for(line in bookLines) {
+            for (line in bookLines) {
                 ctx.collect(line)
             }
         }
@@ -59,14 +59,14 @@ class FlinkWordCount {
         override fun cancel() {}
     }
 
-    class FlinkWordCountSink: SinkFunction<Tuple2<String, Int>> {
+    class FlinkWordCountSink : SinkFunction<Tuple2<String, Int>> {
         val log = LoggerFactory.getLogger(FlinkWordCountSink::class.java)
         override fun invoke(value: Tuple2<String, Int>?, context: SinkFunction.Context?) {
         }
     }
 }
 
-fun main(){
+fun main() {
     val flinkWordCount = FlinkWordCount()
     flinkWordCount.run(1000)
 }

@@ -23,10 +23,12 @@ class JetOrderPortableBomb {
 
     fun buildPipeline(bomb: Int): Pipeline {
         val p: Pipeline = Pipeline.create()
-        p.readFrom(Sources.remoteMap<String, OrderPortable>(
-            DataMap.PortableOrder.mapName,
-            ClusterUtils.getCacheClientConfig()
-        ))
+        p.readFrom(
+            Sources.remoteMap<String, OrderPortable>(
+                DataMap.PortableOrder.mapName,
+                ClusterUtils.getCacheClientConfig()
+            )
+        )
             .flatMap { (key, order) ->
                 val bomb = MutableList<Tuple2<CommodityPortable, OrderPortable>>(bomb) {
                     Tuple2.tuple2(order.commodity, order)
@@ -34,16 +36,16 @@ class JetOrderPortableBomb {
                 Traversers.traverseIterable(bomb)
             }
             .map { (commodity, order) -> order }
-            .writeTo( Sinks.remoteMap(
+            .writeTo(Sinks.remoteMap(
                 DataMap.PortableOrderSink.mapName,
                 ClusterUtils.getCacheClientConfig(),
-                {it.id}
+                { it.id }
             ) { it })
             .setLocalParallelism(8) // as default the sink parallelism is 1
         return p
     }
 
-     fun go(bomb: Int) {
+    fun go(bomb: Int) {
         try {
             val p: Pipeline = buildPipeline(bomb)
             val timeCost = measureNanoTime {

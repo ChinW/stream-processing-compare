@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 object FlinkDataType {
     val orderTypeInfo = generateTypeInfo(OrderPortable::class.java)
 
-    class OrderTypeInfo: TypeInfoFactory<OrderPortable>() {
+    class OrderTypeInfo : TypeInfoFactory<OrderPortable>() {
         override fun createTypeInfo(
             t: Type?,
             genericParameters: MutableMap<String, TypeInformation<*>>?
@@ -20,7 +20,7 @@ object FlinkDataType {
         }
     }
 
-    class CommodityTypeInfo: TypeInfoFactory<CommodityPortable>() {
+    class CommodityTypeInfo : TypeInfoFactory<CommodityPortable>() {
         override fun createTypeInfo(
             t: Type?,
             genericParameters: MutableMap<String, TypeInformation<*>>?
@@ -29,10 +29,10 @@ object FlinkDataType {
         }
     }
 
-    fun <T: PortableBase> generateTypeInfo(thisClass: Class<T>): TypeInformation<T> {
+    fun <T : PortableBase> generateTypeInfo(thisClass: Class<T>): TypeInformation<T> {
         val map = hashMapOf<String, TypeInformation<*>>()
         val fields = thisClass.declaredFields.filter { !Modifier.isStatic(it.modifiers) }
-        for(field in fields) {
+        for (field in fields) {
             map[field.name] =
                 when (field.type) {
                     Boolean::class.java -> Types.BOOLEAN

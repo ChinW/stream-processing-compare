@@ -23,7 +23,8 @@ object ClusterUtils {
 
     fun getJetConfig(): JetConfig {
         val config = JetConfig()
-        config.hazelcastConfig = YamlConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("jet.yaml")).build()
+        config.hazelcastConfig =
+            YamlConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("jet.yaml")).build()
         return config
     }
 
@@ -32,8 +33,9 @@ object ClusterUtils {
     }
 
     fun getJetClient(): JetInstance {
-        if(jetNode == null) {
-            val clientConfig: ClientConfig = YamlClientConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("jet-client.yaml")).build()
+        if (jetNode == null) {
+            val clientConfig: ClientConfig =
+                YamlClientConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("jet-client.yaml")).build()
             jetNode = Jet.newJetClient(clientConfig)
         }
         return jetNode!!
@@ -41,7 +43,8 @@ object ClusterUtils {
 
     fun getCacheConfig(): JetConfig {
         val config = JetConfig()
-        config.hazelcastConfig = YamlConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("cache.yaml")).build()
+        config.hazelcastConfig =
+            YamlConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("cache.yaml")).build()
         return config
     }
 
@@ -49,27 +52,27 @@ object ClusterUtils {
         return Jet.newJetInstance(getCacheConfig()).hazelcastInstance
     }
 
-    fun getCacheClientConfig() : ClientConfig {
-        return  YamlClientConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("cache-client.yaml")).build()
+    fun getCacheClientConfig(): ClientConfig {
+        return YamlClientConfigBuilder(ClusterUtils::class.java.classLoader.getResourceAsStream("cache-client.yaml")).build()
     }
 
     fun getCacheClient(): HazelcastInstance {
-        if(cacheNode == null) {
+        if (cacheNode == null) {
             cacheNode = HazelcastClient.newHazelcastClient(this.getCacheClientConfig())
         }
         return cacheNode!!
     }
 
-    fun <T>getCacheMap(dataMap: DataMap): IMap<String, T> {
+    fun <T> getCacheMap(dataMap: DataMap): IMap<String, T> {
         val cacheClient = getCacheClient()
         return cacheClient.getMap(dataMap.mapName);
     }
 
     fun cancelJob(job: Job?) {
-        if(job != null) {
+        if (job != null) {
             log.info("[${job.name}] cancelling job, status: ${job.status}")
             runBlocking {
-                while(job.status == JobStatus.RUNNING) {
+                while (job.status == JobStatus.RUNNING) {
                     log.info("[${job.name}] job exists, status: ${job.status}, cancelling...")
                     job.cancel()
                     delay(500)

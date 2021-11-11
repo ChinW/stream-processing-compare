@@ -37,7 +37,7 @@ class JetOrderMsgBombV2 {
         return p
     }
 
-     fun go(bomb: Int) {
+    fun go(bomb: Int) {
         try {
             val p: Pipeline = buildPipeline(bomb)
             ClusterUtils.cancelJob(jet.getJob(JetOrderMsgBombV2::class.simpleName!!))

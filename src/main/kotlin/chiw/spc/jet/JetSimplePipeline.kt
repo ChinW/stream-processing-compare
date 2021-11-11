@@ -52,7 +52,7 @@ class JetSimplePipeline {
         return p
     }
 
-     fun go(bomb: Int) {
+    fun go(bomb: Int) {
         val p: Pipeline = buildPipeline(bomb)
         ClusterUtils.cancelJob(jet.getJob(JetSimplePipeline::class.simpleName!!))
         jet.newJob(p, JobConfig().setName(JetSimplePipeline::class.simpleName!!)).join()

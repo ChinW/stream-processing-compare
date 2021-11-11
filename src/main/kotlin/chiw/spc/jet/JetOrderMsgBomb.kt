@@ -20,11 +20,13 @@ class JetOrderMsgBomb {
 
     fun buildPipeline(bomb: Int): Pipeline {
         val p: Pipeline = Pipeline.create()
-        p.readFrom(Sources.remoteMapJournal<String, OrderMsg>(
-            DataMap.OrderMsg.mapName,
-            ClusterUtils.getCacheClientConfig(),
-            JournalInitialPosition.START_FROM_CURRENT
-        ))
+        p.readFrom(
+            Sources.remoteMapJournal<String, OrderMsg>(
+                DataMap.OrderMsg.mapName,
+                ClusterUtils.getCacheClientConfig(),
+                JournalInitialPosition.START_FROM_CURRENT
+            )
+        )
             .withIngestionTimestamps()
             .rebalance()
             .flatMap { (key, order) ->
@@ -36,15 +38,15 @@ class JetOrderMsgBomb {
             }
             .rebalance()
             .map { (commodity, order) -> order }
-            .writeTo( Sinks.remoteMap(
+            .writeTo(Sinks.remoteMap(
                 DataMap.OrderMsgSink.mapName,
                 ClusterUtils.getCacheClientConfig(),
-                {it.id}
+                { it.id }
             ) { it })
         return p
     }
 
-     fun go(bomb: Int) {
+    fun go(bomb: Int) {
         try {
             val p: Pipeline = buildPipeline(bomb)
             ClusterUtils.cancelJob(jet.getJob(JetOrderMsgBomb::class.simpleName!!))

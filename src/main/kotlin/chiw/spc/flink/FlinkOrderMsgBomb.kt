@@ -44,15 +44,15 @@ class FlinkOrderMsgBomb {
         env.execute("${source}-${sink}-pipeline")
     }
 
-    class FlinkFlatMap(val bomb: Int): FlatMapFunction<OrderMsg, Tuple2<CommodityMsg, OrderMsg>> {
+    class FlinkFlatMap(val bomb: Int) : FlatMapFunction<OrderMsg, Tuple2<CommodityMsg, OrderMsg>> {
         override fun flatMap(order: OrderMsg, out: Collector<Tuple2<CommodityMsg, OrderMsg>>) {
-            for(i in 0 until bomb) {
+            for (i in 0 until bomb) {
                 out.collect(Tuple2(order.commodity, order))
             }
         }
     }
 
-    class FlinkMap: MapFunction<Tuple2<CommodityMsg, OrderMsg>, OrderMsg> {
+    class FlinkMap : MapFunction<Tuple2<CommodityMsg, OrderMsg>, OrderMsg> {
         override fun map(value: Tuple2<CommodityMsg, OrderMsg>): OrderMsg {
             return value.f1
         }
@@ -71,7 +71,7 @@ class FlinkOrderMsgBomb {
     }
 }
 
-fun main(){
+fun main() {
     val dataflow = FlinkOrderMsgBomb()
     dataflow.run(1000)
 }

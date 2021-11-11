@@ -12,8 +12,7 @@ data class OrderPortable(
     var userId: String = "",
     var createdAt: Double = 0.0,
     var timeCost: Double = 0.0,
-) : PortableBase(ClassId.Order)
-{
+) : PortableBase(ClassId.Order) {
     override fun getIdentity(): String {
         return this.id
     }
