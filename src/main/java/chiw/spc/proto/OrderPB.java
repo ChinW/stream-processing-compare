@@ -29,17 +29,17 @@ public final class OrderPB {
   static {
     java.lang.String[] descriptorData = {
       "\n\013order.proto\022\tCacheType\032\rcountry.proto\032" +
-      "\017commodity.proto\"\374\002\n\010OrderMsg\022\022\n\nhzCusto" +
-      "mId\030\t \001(\005\022\017\n\002id\030\001 \001(\tH\000\210\001\001\022\025\n\010quantity\030\002" +
-      " \001(\005H\001\210\001\001\022\022\n\005price\030\003 \001(\002H\002\210\001\001\022/\n\tcommodi" +
-      "ty\030\004 \001(\0132\027.CacheType.CommodityMsgH\003\210\001\001\022+" +
-      "\n\007country\030\005 \001(\0162\025.CacheType.CountryMsgH\004" +
-      "\210\001\001\022\023\n\006userId\030\006 \001(\tH\005\210\001\001\022\026\n\tcreatedAt\030\007 " +
-      "\001(\003H\006\210\001\001\022\025\n\010timeCost\030\010 \001(\005H\007\210\001\001\022\024\n\007isVal" +
-      "id\030\n \001(\010H\010\210\001\001B\005\n\003_idB\013\n\t_quantityB\010\n\006_pr" +
-      "iceB\014\n\n_commodityB\n\n\010_countryB\t\n\007_userId" +
-      "B\014\n\n_createdAtB\013\n\t_timeCostB\n\n\010_isValidB" +
-      "\033\n\016chiw.spc.protoB\007OrderPBP\001b\006proto3"
+      "\017commodity.proto\"\352\002\n\010OrderMsg\022\022\n\nhzCusto" +
+      "mId\030\t \001(\005\022\017\n\002id\030\001 \001(\tH\000\210\001\001\022\020\n\010quantity\030\002" +
+      " \001(\005\022\022\n\005price\030\003 \001(\002H\001\210\001\001\022/\n\tcommodity\030\004 " +
+      "\001(\0132\027.CacheType.CommodityMsgH\002\210\001\001\022+\n\007cou" +
+      "ntry\030\005 \001(\0162\025.CacheType.CountryMsgH\003\210\001\001\022\023" +
+      "\n\006userId\030\006 \001(\tH\004\210\001\001\022\026\n\tcreatedAt\030\007 \001(\003H\005" +
+      "\210\001\001\022\025\n\010timeCost\030\010 \001(\005H\006\210\001\001\022\024\n\007isValid\030\n " +
+      "\001(\010H\007\210\001\001B\005\n\003_idB\010\n\006_priceB\014\n\n_commodityB" +
+      "\n\n\010_countryB\t\n\007_userIdB\014\n\n_createdAtB\013\n\t" +
+      "_timeCostB\n\n\010_isValidB\033\n\016chiw.spc.protoB" +
+      "\007OrderPBP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -52,7 +52,7 @@ public final class OrderPB {
     internal_static_CacheType_OrderMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CacheType_OrderMsg_descriptor,
-        new java.lang.String[] { "HzCustomId", "Id", "Quantity", "Price", "Commodity", "Country", "UserId", "CreatedAt", "TimeCost", "IsValid", "Id", "Quantity", "Price", "Commodity", "Country", "UserId", "CreatedAt", "TimeCost", "IsValid", });
+        new java.lang.String[] { "HzCustomId", "Id", "Quantity", "Price", "Commodity", "Country", "UserId", "CreatedAt", "TimeCost", "IsValid", "Id", "Price", "Commodity", "Country", "UserId", "CreatedAt", "TimeCost", "IsValid", });
     chiw.spc.proto.CountryPB.getDescriptor();
     chiw.spc.proto.CommodityPB.getDescriptor();
   }

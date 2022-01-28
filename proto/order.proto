@@ -10,7 +10,7 @@ import "commodity.proto";
 message OrderMsg {
   int32 hzCustomId = 9;
   optional string id = 1;
-  optional int32 quantity = 2;
+  int32 quantity = 2;
   optional float price = 3;
   optional CommodityMsg commodity = 4;
   optional CountryMsg country = 5;

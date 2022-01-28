@@ -31,12 +31,7 @@ public interface OrderMsgOrBuilder extends
       getIdBytes();
 
   /**
-   * <code>optional int32 quantity = 2;</code>
-   * @return Whether the quantity field is set.
-   */
-  boolean hasQuantity();
-  /**
-   * <code>optional int32 quantity = 2;</code>
+   * <code>int32 quantity = 2;</code>
    * @return The quantity.
    */
   int getQuantity();

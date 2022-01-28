@@ -59,18 +59,18 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 16: {
-            bitField0_ |= 0x00000002;
+
             quantity_ = input.readInt32();
             break;
           }
           case 29: {
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000002;
             price_ = input.readFloat();
             break;
           }
           case 34: {
             chiw.spc.proto.CommodityMsg.Builder subBuilder = null;
-            if (((bitField0_ & 0x00000008) != 0)) {
+            if (((bitField0_ & 0x00000004) != 0)) {
               subBuilder = commodity_.toBuilder();
             }
             commodity_ = input.readMessage(chiw.spc.proto.CommodityMsg.parser(), extensionRegistry);
@@ -78,28 +78,28 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom(commodity_);
               commodity_ = subBuilder.buildPartial();
             }
-            bitField0_ |= 0x00000008;
+            bitField0_ |= 0x00000004;
             break;
           }
           case 40: {
             int rawValue = input.readEnum();
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000008;
             country_ = rawValue;
             break;
           }
           case 50: {
             java.lang.String s = input.readStringRequireUtf8();
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000010;
             userId_ = s;
             break;
           }
           case 56: {
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000020;
             createdAt_ = input.readInt64();
             break;
           }
           case 64: {
-            bitField0_ |= 0x00000080;
+            bitField0_ |= 0x00000040;
             timeCost_ = input.readInt32();
             break;
           }
@@ -109,7 +109,7 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 80: {
-            bitField0_ |= 0x00000100;
+            bitField0_ |= 0x00000080;
             isValid_ = input.readBool();
             break;
           }
@@ -206,15 +206,7 @@ private static final long serialVersionUID = 0L;
   public static final int QUANTITY_FIELD_NUMBER = 2;
   private int quantity_;
   /**
-   * <code>optional int32 quantity = 2;</code>
-   * @return Whether the quantity field is set.
-   */
-  @java.lang.Override
-  public boolean hasQuantity() {
-    return ((bitField0_ & 0x00000002) != 0);
-  }
-  /**
-   * <code>optional int32 quantity = 2;</code>
+   * <code>int32 quantity = 2;</code>
    * @return The quantity.
    */
   @java.lang.Override
@@ -230,7 +222,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasPrice() {
-    return ((bitField0_ & 0x00000004) != 0);
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
    * <code>optional float price = 3;</code>
@@ -249,7 +241,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasCommodity() {
-    return ((bitField0_ & 0x00000008) != 0);
+    return ((bitField0_ & 0x00000004) != 0);
   }
   /**
    * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
@@ -274,7 +266,7 @@ private static final long serialVersionUID = 0L;
    * @return Whether the country field is set.
    */
   @java.lang.Override public boolean hasCountry() {
-    return ((bitField0_ & 0x00000010) != 0);
+    return ((bitField0_ & 0x00000008) != 0);
   }
   /**
    * <code>optional .CacheType.CountryMsg country = 5;</code>
@@ -301,7 +293,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasUserId() {
-    return ((bitField0_ & 0x00000020) != 0);
+    return ((bitField0_ & 0x00000010) != 0);
   }
   /**
    * <code>optional string userId = 6;</code>
@@ -347,7 +339,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasCreatedAt() {
-    return ((bitField0_ & 0x00000040) != 0);
+    return ((bitField0_ & 0x00000020) != 0);
   }
   /**
    * <code>optional int64 createdAt = 7;</code>
@@ -366,7 +358,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasTimeCost() {
-    return ((bitField0_ & 0x00000080) != 0);
+    return ((bitField0_ & 0x00000040) != 0);
   }
   /**
    * <code>optional int32 timeCost = 8;</code>
@@ -385,7 +377,7 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public boolean hasIsValid() {
-    return ((bitField0_ & 0x00000100) != 0);
+    return ((bitField0_ & 0x00000080) != 0);
   }
   /**
    * <code>optional bool isValid = 10;</code>
@@ -413,31 +405,31 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
     }
-    if (((bitField0_ & 0x00000002) != 0)) {
+    if (quantity_ != 0) {
       output.writeInt32(2, quantity_);
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       output.writeFloat(3, price_);
     }
-    if (((bitField0_ & 0x00000008) != 0)) {
+    if (((bitField0_ & 0x00000004) != 0)) {
       output.writeMessage(4, getCommodity());
     }
-    if (((bitField0_ & 0x00000010) != 0)) {
+    if (((bitField0_ & 0x00000008) != 0)) {
       output.writeEnum(5, country_);
     }
-    if (((bitField0_ & 0x00000020) != 0)) {
+    if (((bitField0_ & 0x00000010) != 0)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, userId_);
     }
-    if (((bitField0_ & 0x00000040) != 0)) {
+    if (((bitField0_ & 0x00000020) != 0)) {
       output.writeInt64(7, createdAt_);
     }
-    if (((bitField0_ & 0x00000080) != 0)) {
+    if (((bitField0_ & 0x00000040) != 0)) {
       output.writeInt32(8, timeCost_);
     }
     if (hzCustomId_ != 0) {
       output.writeInt32(9, hzCustomId_);
     }
-    if (((bitField0_ & 0x00000100) != 0)) {
+    if (((bitField0_ & 0x00000080) != 0)) {
       output.writeBool(10, isValid_);
     }
     unknownFields.writeTo(output);
@@ -452,30 +444,30 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
     }
-    if (((bitField0_ & 0x00000002) != 0)) {
+    if (quantity_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, quantity_);
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(3, price_);
     }
-    if (((bitField0_ & 0x00000008) != 0)) {
+    if (((bitField0_ & 0x00000004) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getCommodity());
     }
-    if (((bitField0_ & 0x00000010) != 0)) {
+    if (((bitField0_ & 0x00000008) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(5, country_);
     }
-    if (((bitField0_ & 0x00000020) != 0)) {
+    if (((bitField0_ & 0x00000010) != 0)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, userId_);
     }
-    if (((bitField0_ & 0x00000040) != 0)) {
+    if (((bitField0_ & 0x00000020) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(7, createdAt_);
     }
-    if (((bitField0_ & 0x00000080) != 0)) {
+    if (((bitField0_ & 0x00000040) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(8, timeCost_);
     }
@@ -483,7 +475,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(9, hzCustomId_);
     }
-    if (((bitField0_ & 0x00000100) != 0)) {
+    if (((bitField0_ & 0x00000080) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(10, isValid_);
     }
@@ -509,11 +501,8 @@ private static final long serialVersionUID = 0L;
       if (!getId()
           .equals(other.getId())) return false;
     }
-    if (hasQuantity() != other.hasQuantity()) return false;
-    if (hasQuantity()) {
-      if (getQuantity()
-          != other.getQuantity()) return false;
-    }
+    if (getQuantity()
+        != other.getQuantity()) return false;
     if (hasPrice() != other.hasPrice()) return false;
     if (hasPrice()) {
       if (java.lang.Float.floatToIntBits(getPrice())
@@ -566,10 +555,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId().hashCode();
     }
-    if (hasQuantity()) {
-      hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
-      hash = (53 * hash) + getQuantity();
-    }
+    hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
+    hash = (53 * hash) + getQuantity();
     if (hasPrice()) {
       hash = (37 * hash) + PRICE_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
@@ -740,25 +727,25 @@ private static final long serialVersionUID = 0L;
       id_ = "";
       bitField0_ = (bitField0_ & ~0x00000001);
       quantity_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000002);
+
       price_ = 0F;
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       if (commodityBuilder_ == null) {
         commodity_ = null;
       } else {
         commodityBuilder_.clear();
       }
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000004);
       country_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000008);
       userId_ = "";
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000010);
       createdAt_ = 0L;
-      bitField0_ = (bitField0_ & ~0x00000040);
+      bitField0_ = (bitField0_ & ~0x00000020);
       timeCost_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000080);
+      bitField0_ = (bitField0_ & ~0x00000040);
       isValid_ = false;
-      bitField0_ = (bitField0_ & ~0x00000100);
+      bitField0_ = (bitField0_ & ~0x00000080);
       return this;
     }
 
@@ -792,41 +779,38 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000001;
       }
       result.id_ = id_;
+      result.quantity_ = quantity_;
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.quantity_ = quantity_;
+        result.price_ = price_;
         to_bitField0_ |= 0x00000002;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.price_ = price_;
-        to_bitField0_ |= 0x00000004;
-      }
-      if (((from_bitField0_ & 0x00000008) != 0)) {
         if (commodityBuilder_ == null) {
           result.commodity_ = commodity_;
         } else {
           result.commodity_ = commodityBuilder_.build();
         }
+        to_bitField0_ |= 0x00000004;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
         to_bitField0_ |= 0x00000008;
       }
+      result.country_ = country_;
       if (((from_bitField0_ & 0x00000010) != 0)) {
         to_bitField0_ |= 0x00000010;
       }
-      result.country_ = country_;
+      result.userId_ = userId_;
       if (((from_bitField0_ & 0x00000020) != 0)) {
+        result.createdAt_ = createdAt_;
         to_bitField0_ |= 0x00000020;
       }
-      result.userId_ = userId_;
       if (((from_bitField0_ & 0x00000040) != 0)) {
-        result.createdAt_ = createdAt_;
+        result.timeCost_ = timeCost_;
         to_bitField0_ |= 0x00000040;
       }
       if (((from_bitField0_ & 0x00000080) != 0)) {
-        result.timeCost_ = timeCost_;
-        to_bitField0_ |= 0x00000080;
-      }
-      if (((from_bitField0_ & 0x00000100) != 0)) {
         result.isValid_ = isValid_;
-        to_bitField0_ |= 0x00000100;
+        to_bitField0_ |= 0x00000080;
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -885,7 +869,7 @@ private static final long serialVersionUID = 0L;
         id_ = other.id_;
         onChanged();
       }
-      if (other.hasQuantity()) {
+      if (other.getQuantity() != 0) {
         setQuantity(other.getQuantity());
       }
       if (other.hasPrice()) {
@@ -898,7 +882,7 @@ private static final long serialVersionUID = 0L;
         setCountry(other.getCountry());
       }
       if (other.hasUserId()) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         userId_ = other.userId_;
         onChanged();
       }
@@ -1057,15 +1041,7 @@ private static final long serialVersionUID = 0L;
 
     private int quantity_ ;
     /**
-     * <code>optional int32 quantity = 2;</code>
-     * @return Whether the quantity field is set.
-     */
-    @java.lang.Override
-    public boolean hasQuantity() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>optional int32 quantity = 2;</code>
+     * <code>int32 quantity = 2;</code>
      * @return The quantity.
      */
     @java.lang.Override
@@ -1073,22 +1049,22 @@ private static final long serialVersionUID = 0L;
       return quantity_;
     }
     /**
-     * <code>optional int32 quantity = 2;</code>
+     * <code>int32 quantity = 2;</code>
      * @param value The quantity to set.
      * @return This builder for chaining.
      */
     public Builder setQuantity(int value) {
-      bitField0_ |= 0x00000002;
+      
       quantity_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>optional int32 quantity = 2;</code>
+     * <code>int32 quantity = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearQuantity() {
-      bitField0_ = (bitField0_ & ~0x00000002);
+      
       quantity_ = 0;
       onChanged();
       return this;
@@ -1101,7 +1077,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasPrice() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
      * <code>optional float price = 3;</code>
@@ -1117,7 +1093,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setPrice(float value) {
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000002;
       price_ = value;
       onChanged();
       return this;
@@ -1127,7 +1103,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPrice() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000002);
       price_ = 0F;
       onChanged();
       return this;
@@ -1141,7 +1117,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the commodity field is set.
      */
     public boolean hasCommodity() {
-      return ((bitField0_ & 0x00000008) != 0);
+      return ((bitField0_ & 0x00000004) != 0);
     }
     /**
      * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
@@ -1167,7 +1143,7 @@ private static final long serialVersionUID = 0L;
       } else {
         commodityBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       return this;
     }
     /**
@@ -1181,7 +1157,7 @@ private static final long serialVersionUID = 0L;
       } else {
         commodityBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       return this;
     }
     /**
@@ -1189,7 +1165,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeCommodity(chiw.spc.proto.CommodityMsg value) {
       if (commodityBuilder_ == null) {
-        if (((bitField0_ & 0x00000008) != 0) &&
+        if (((bitField0_ & 0x00000004) != 0) &&
             commodity_ != null &&
             commodity_ != chiw.spc.proto.CommodityMsg.getDefaultInstance()) {
           commodity_ =
@@ -1201,7 +1177,7 @@ private static final long serialVersionUID = 0L;
       } else {
         commodityBuilder_.mergeFrom(value);
       }
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       return this;
     }
     /**
@@ -1214,14 +1190,14 @@ private static final long serialVersionUID = 0L;
       } else {
         commodityBuilder_.clear();
       }
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000004);
       return this;
     }
     /**
      * <code>optional .CacheType.CommodityMsg commodity = 4;</code>
      */
     public chiw.spc.proto.CommodityMsg.Builder getCommodityBuilder() {
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000004;
       onChanged();
       return getCommodityFieldBuilder().getBuilder();
     }
@@ -1259,7 +1235,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the country field is set.
      */
     @java.lang.Override public boolean hasCountry() {
-      return ((bitField0_ & 0x00000010) != 0);
+      return ((bitField0_ & 0x00000008) != 0);
     }
     /**
      * <code>optional .CacheType.CountryMsg country = 5;</code>
@@ -1274,7 +1250,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setCountryValue(int value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       country_ = value;
       onChanged();
       return this;
@@ -1298,7 +1274,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
         throw new NullPointerException();
       }
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       country_ = value.getNumber();
       onChanged();
       return this;
@@ -1308,7 +1284,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearCountry() {
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000008);
       country_ = 0;
       onChanged();
       return this;
@@ -1320,7 +1296,7 @@ private static final long serialVersionUID = 0L;
      * @return Whether the userId field is set.
      */
     public boolean hasUserId() {
-      return ((bitField0_ & 0x00000020) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
      * <code>optional string userId = 6;</code>
@@ -1365,7 +1341,7 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000010;
       userId_ = value;
       onChanged();
       return this;
@@ -1375,7 +1351,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearUserId() {
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000010);
       userId_ = getDefaultInstance().getUserId();
       onChanged();
       return this;
@@ -1391,7 +1367,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       userId_ = value;
       onChanged();
       return this;
@@ -1404,7 +1380,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasCreatedAt() {
-      return ((bitField0_ & 0x00000040) != 0);
+      return ((bitField0_ & 0x00000020) != 0);
     }
     /**
      * <code>optional int64 createdAt = 7;</code>
@@ -1420,7 +1396,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setCreatedAt(long value) {
-      bitField0_ |= 0x00000040;
+      bitField0_ |= 0x00000020;
       createdAt_ = value;
       onChanged();
       return this;
@@ -1430,7 +1406,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearCreatedAt() {
-      bitField0_ = (bitField0_ & ~0x00000040);
+      bitField0_ = (bitField0_ & ~0x00000020);
       createdAt_ = 0L;
       onChanged();
       return this;
@@ -1443,7 +1419,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasTimeCost() {
-      return ((bitField0_ & 0x00000080) != 0);
+      return ((bitField0_ & 0x00000040) != 0);
     }
     /**
      * <code>optional int32 timeCost = 8;</code>
@@ -1459,7 +1435,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setTimeCost(int value) {
-      bitField0_ |= 0x00000080;
+      bitField0_ |= 0x00000040;
       timeCost_ = value;
       onChanged();
       return this;
@@ -1469,7 +1445,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearTimeCost() {
-      bitField0_ = (bitField0_ & ~0x00000080);
+      bitField0_ = (bitField0_ & ~0x00000040);
       timeCost_ = 0;
       onChanged();
       return this;
@@ -1482,7 +1458,7 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public boolean hasIsValid() {
-      return ((bitField0_ & 0x00000100) != 0);
+      return ((bitField0_ & 0x00000080) != 0);
     }
     /**
      * <code>optional bool isValid = 10;</code>
@@ -1498,7 +1474,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setIsValid(boolean value) {
-      bitField0_ |= 0x00000100;
+      bitField0_ |= 0x00000080;
       isValid_ = value;
       onChanged();
       return this;
@@ -1508,7 +1484,7 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearIsValid() {
-      bitField0_ = (bitField0_ & ~0x00000100);
+      bitField0_ = (bitField0_ & ~0x00000080);
       isValid_ = false;
       onChanged();
       return this;

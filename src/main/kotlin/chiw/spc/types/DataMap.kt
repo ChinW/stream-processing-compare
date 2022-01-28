@@ -2,8 +2,7 @@ package chiw.spc.types
 
 enum class DataMap(val mapName: String) {
     PortableOrder("PortableOrder"),
-    OrderMsg("MsgOrder"),
-    OrderMsg2("MsgOrder2"),
+    OrderMsg("OrderMsg"),
     PortableOrderSink("PortableOrderSink"),
     OrderMsgSink("OrderMsgSink")
 }
